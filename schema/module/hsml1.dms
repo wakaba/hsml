@@ -7,7 +7,7 @@ ModuleSet:
     This is HSML - Hyper Slide Markup Language, Version 1.
   @ID: hsml1
   @BaseURI:
-    http://suika.fam.cx/~wakaba/-temp/slide/dtd/module/
+    http://suika.fam.cx/~wakaba/-temp/slide/schema/module/
   
   @Namespace:
     @@Name:
@@ -17,7 +17,7 @@ ModuleSet:
   
   @Copyright: Wakaba <w@suika.fam.cx>
   @RCSDate:
-    $Date: 2004/06/20 04:53:23 $
+    $Date: 2004/06/20 05:16:30 $
 
 Datatype:
   @Type:
@@ -117,3 +117,14 @@ Module:
         @@@@Description: Counter name
     @@Description: Sequential number
 
+Module:
+  @Name: Internal
+  @ID: internal
+  @Description: Information items for internal processing
+  
+  @Element:
+    @@Name: slideBody
+    @@Content:
+      (slide)
+    @@Description:
+      Slide body - slide except note

@@ -7,14 +7,14 @@ DocumentType:
     This is HSML - Hyper Slide Markup Language, Version 1.0.
   @ID: hsml10
   @BaseURI:
-    http://suika.fam.cx/~wakaba/-temp/slide/dtd/
+    http://suika.fam.cx/~wakaba/-temp/slide/schema/
   
   @Namespace:
     @@UsePrefix: 1
   
   @Copyright: Wakaba <w@suika.fam.cx>
   @RCSDate:
-    $Date: 2004/06/20 04:53:23 $
+    $Date: 2004/06/20 05:16:30 $
 
 Driver:
   @ModuleSet:
