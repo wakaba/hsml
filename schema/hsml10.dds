@@ -1,0 +1,341 @@
+#?SuikaWikiConfig/2.0
+
+DocumentType:
+  @Name: HSML
+  @Version: 1.0
+  @Description:
+    This is HSML - Hyper Slide Markup Language, Version 1.0.
+  @ID: hsml10
+  @BaseURI:
+    http://suika.fam.cx/~wakaba/-temp/slide/dtd/
+  
+  @Namespace:
+    @@UsePrefix: 1
+  
+  @Copyright: Wakaba <w@suika.fam.cx>
+  @RCSDate:
+    $Date: 2004/06/20 04:53:23 $
+
+Driver:
+  @ModuleSet:
+    @@Name: HSML
+    @@Version: 1
+    @@ID: hsml1
+    @@BaseURI:
+      module/
+    @@Namespace:
+      @@@Name:
+        urn:x-suika-fam-cx:markup:slide:1
+      @@@DefaultPrefix: s
+      @@@UsePrefix: -1
+    @@Default: 1
+  @ModuleSet:
+    @@Name: XHTML
+    @@Version: 2
+    @@ID: xhtml2
+    @@BaseURI:
+      data:,xhtml2-dtd-module-
+    @@Namespace:
+      @@@Name:
+        http://www.w3.org/2002/06/xhtml2
+      @@@DefaultPrefix: h
+      @@@UsePrefix: 1
+    @@Default: 1
+  @ModuleSet:
+    @@Name: XHTML
+    @@Version: 1
+    @@ID: XHTML
+    @@BaseURI:
+      http://www.w3.org/TR/xhtml-modularization/DTD/
+    @@Namespace:
+      @@@Name:
+        http://www.w3.org/1999/xhtml
+      @@@DefaultPrefix: h1
+      @@@UsePrefix: 1
+    @@Default: -1
+  
+  @QNameModule:
+    @@ID:
+      hsml1:qname
+  @QNameModule:
+    @@ID:
+      XHTML:qname
+    @@SYSTEM:
+      xhtml-qname-1.mod
+    @@PUBLIC:
+      -//W3C//ENTITIES XHTML Qualified Names 1.0//EN
+  
+  @DatatypeModule:
+    @@ID:
+      hsml1:datatype
+  @DatatypeModule:
+    @@ID:
+      XHTML:datatype
+    @@SYSTEM:
+      xhtml-datatypes-1.mod
+    @@PUBLIC:
+      -//W3C//ENTITIES XHTML Datatypes 1.0//EN
+  
+  @AttributeModule:
+    @@ID:
+      hsml1:attribs
+  @AttributeModule:
+    @@ID:
+      XHTML:attribs
+    @@SYSTEM:
+      xhtml-attribs-1.mod
+    @@PUBLIC:
+      -//W3C//ENTITIES XHTML Common Attributes 1.0//EN
+    
+    @@ParameterEntity:
+      @@@Name: XHTML.bidi
+      @@@EntityValue: INCLUDE
+    @@AttributeSet:
+      @@@Name: 
+        XHTML:common.extra
+      @@@REF:
+        xml:space
+  
+  @Module:
+    @@ID:
+      hsml1:inline
+    @@Description: Inline module
+  
+  @Module:
+    @@ID:
+      hsml1:figure
+    @@Description: Figure module
+  
+  @Module:
+    @@ID:
+      hsml1:struct
+    @@Description: Slide structure module
+
+Model:
+  @Class:
+    @@Name:
+      :HeadOpts.mix
+    @@Content:
+    @@Description: Optional Elements in html:head
+  
+  ## Inline or block
+  @Class:
+    @@Name:
+      :Edit
+    @@Content:
+  @Class:
+    @@Name:
+      :Script
+    @@Content:
+    @@Description:
+      scripts and alternative content
+      
+  @Class:
+    @@Name:
+      :Misc.extra
+    @@Content: 
+  @Class:
+    @@Name:
+      :Misc.class
+    @@Content:
+      $:Edit
+      $:Script
+      $:Misc.extra
+    @@Description:
+      neither block nor inline, and can
+      essentially be used anywhere in the document body
+  
+  ## Inline
+  @Class:
+    @@Name:
+      :InlStruct
+    @@Content:
+        h2:span
+  
+  @Class:
+    @@Name: emphasis
+    @@Content:
+        h2:em
+  @Class:
+    @@Name:
+      :InlPhras
+    @@Content:
+      | $emphasis
+  
+  @Class:
+    @@Name: vertical-align
+    @@Content:
+      h2:sup | h2:sub
+  @Class:
+    @@Name:
+      :InlPres
+    @@Content:
+      | $vertical-align
+  
+  @Class:
+    @@Name:
+      :I18n
+    @@Content:
+  @Class:
+    @@Name:
+      :Anchor
+    @@Content:
+  
+  @Class:
+    @@Name:
+      :InlSpecial
+    @@Content:
+      | seqNo
+  
+  @Class:
+    @@Name:
+      :InlForm
+    @@Content:
+  
+  @Class:
+    @@Name:
+      :Ruby
+    @@Content:
+      | h2:ruby
+  
+  @Class:
+    @@Name:
+      :Inline.extra
+    @@Content: 
+  
+  @Class:
+    @@Name:
+      :InlNoRuby
+    @@Content:
+      $:InlStruct
+      $:InlPhras
+      $:InlPres
+      $:I18n
+      $:Anchor
+      $:InlSpecial
+      $:InlForm
+      $:Inline.extra
+  @Class:
+    @@Name:
+      :Inline.class
+    @@Content:
+      $:InlNoRuby $:Ruby
+    @@Description: includes all inline elements
+  @Class:
+    @@Name: 
+      :Inline.mix
+    @@Content:
+      $:Inline.class
+      $:Misc.class
+    @@Description: all inline elements, including %Misc.class;
+  @Class:
+    @@Name:
+      :InlNoAnchor
+    @@Content:
+      $:Inline
+  @Class:
+    @@Name:
+      :InlNoAnchor.mix
+    @@Content:
+      $:InlNoAnchor
+      $:Misc.class
+  @Class:
+    @@Name:
+      :NoRuby.content
+    @@Content:
+      (
+        \#PCDATA
+      | $:InlNoRuby
+        $:Misc.class
+      )*
+  
+  ## Block
+  @Class:
+    @@Name:
+      :List
+    @@Content:
+        h2:ul
+      | h2:ol
+      | h2:nl
+      | h2:dl
+  
+  @Class:
+    @@Name:
+      :Heading
+    @@Content:
+        h2:h
+  
+  @Class:
+    @@Name:
+      :Table
+    @@Content:
+      | h2:table
+  
+  @Class:
+    @@Name:
+      :Form
+    @@Content:
+  @Class:
+    @@Name:
+      :Fieldset
+    @@Content:
+  
+  @Class:
+    @@Name:
+      :BlkStruct
+    @@Content:
+        h2:p
+      | h2:div
+  
+  @Class:
+    @@Name:
+      :BlkPhras
+    @@Content:
+      | fig
+  
+  @Class:
+    @@Name:
+      :BlkPres
+  
+  @Class:
+    @@Name:
+      :BlkSpecial
+    @@Content:
+        $:Table
+        $:Form
+        $:Fieldset
+  
+  @Class:
+    @@Name:
+      :Block.extra
+    @@Content: 
+  @Class:
+    @@Name:
+      :Block.class
+    @@Content:
+        $:BlkStruct
+        $:BlkPhras
+        $:BlkPres
+        $:BlkSpecial
+        $:Block.extra
+    @@Description: includes all block elements
+  @Class:
+    @@Name: 
+      :Block.mix
+    @@Content:
+        $:Heading
+      | $:List
+      | $:Block.class
+        $:Misc.class
+    @@Description: includes all block elements plus %Misc.class;
+  
+  @Class:
+    @@Name:
+      :Flow.mix
+    @@Content:
+        $:List
+      | $:Block.class
+      | $:Inline.class
+        
+        $:Misc.class
+    @@Description: includes all text content, block and inline

@@ -1,0 +1,119 @@
+#?SuikaWikiConfig/2.0
+
+ModuleSet:
+  @Name: HSML
+  @Version: 1
+  @Description:
+    This is HSML - Hyper Slide Markup Language, Version 1.
+  @ID: hsml1
+  @BaseURI:
+    http://suika.fam.cx/~wakaba/-temp/slide/dtd/module/
+  
+  @Namespace:
+    @@Name:
+      urn:x-suika-fam-cx:markup:slide:1
+    @@DefaultPrefix: s
+    @@UsePrefix: 0
+  
+  @Copyright: Wakaba <w@suika.fam.cx>
+  @RCSDate:
+    $Date: 2004/06/20 04:53:23 $
+
+Datatype:
+  @Type:
+    @@Name: class
+    @@XMLType: NMTOKENS
+    @@Description: Class names.  More consideration needed for type.
+  @Type:
+    @@Name:
+      :LanguageCode
+    @@XMLType: CDATA
+    @@Description: IETF Language Tag
+  @Type:
+    @@Name:
+      :URI
+    @@XMLType: CDATA
+    @@Description: A URI Reference
+
+Attribute:
+  @AttributeSet:
+    @@Name: common
+    @@Attribute:
+      @@@Name: "class"
+      @@@Type: class
+      @@@Default: #IMPLIED
+      @@@Description: Class names.
+    @@REF:
+      xml:lang
+    @@REF:
+      xml:base
+    @@REF:
+      xml:space
+    @@REF:
+      xsi:schemaLocation
+    @@REF:
+      xsi:type
+
+Module:
+  @ID: struct
+  
+  @Class:
+    @@Name: header
+    @@Content:
+      slide
+    @@Description:
+      Placeholder for header elements
+  
+  @Element:
+    @@Name: slides
+    @@Content:
+      (($header)*, slide*)
+    @@Description: Slides
+  
+  @Element:
+    @@Name: slide
+    @@Content:
+      (
+        $:Heading,
+        ($:Block.mix)*
+      )
+    @@Description: Slide
+
+Module:
+  @Name: Figure
+  @ID: figure
+  
+  @Element:
+    @@Name: fig
+    @@Content:
+      (
+        ($:Block.mix)*,
+        caption?
+      )
+    @@Description: Figure
+  
+  @Element:
+    @@Name: caption
+    @@Content:
+      (#PCDATA | $:Inline.mix)*
+    @@Description: Figure caption
+
+Module:
+  @Name: Inline
+  @ID: inline
+  
+  @Element:
+    @@Name: seqNo
+    @@Content:
+      (
+        \#PCDATA
+      | $:Inline.mix
+      )*
+    @@Attribute:
+      @@@Attribute:
+        @@@@Name: "name"
+        @@@@Type: "NMTOKEN"
+        @@@@Default: #REQUIRED
+        @@@@Description: Counter name
+    @@Description: Sequential number
+

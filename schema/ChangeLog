@@ -1,0 +1,5 @@
+2004-06-20  Wakaba  <w@suika.fam.cx>
+
+	* module/: New directory.
+	* Makefile, ChangeLog: New file.
+	* hsml10.dds: New.
