@@ -4,7 +4,7 @@ LIB = ../../../tool/
 PERL = perl -I$(LIB)
 MKDTDS = $(BIN)mkdtds.pl
 
-all: rfc2629 rfc2629ja myns
+all: hsml1
 
 %: %.dms $(MKDTDS)
 	$(PERL) $(MKDTDS) $<
