@@ -1,0 +1,97 @@
+@charset 'iso-2022-jp';
+@namespace h 'http://www.w3.org/2002/06/xhtml2';
+
+/* Meta informations */
+h|head {
+	display: none;
+}
+
+/* Headings */
+h|h {
+	display: block;
+	font-weight: bolder;
+}
+
+/* List */
+h|ul, h|nl {
+	display: block;
+	margin-top: 1em; margin-bottom: 1em;
+	list-style-item: disc;
+}
+h|ul h|ul, h|nl h|ul, h|ul h|nl, h|nl h|nl {
+	margin-top: 0;
+	margin-bottom: 0;
+	list-style-type: circle;
+}
+h|ul h|ul h|ul, h|nl h|ul h|ul, h|ul h|nl h|ul, h|nl h|nl h|ul,
+h|ul h|ul h|nl, h|nl h|ul h|nl, h|ul h|nl h|nl, h|nl h|nl h|nl {
+	list-style-type: square;
+}
+h|li {
+	display: list-item;
+	margin-left: 1em;
+	list-style-position: outer;
+}
+
+h|ol {
+	display: block;
+	margin-top: 1em; margin-bottom: 1em;
+}
+h|ol > h|li {
+	display: block;
+	margin-left: 0;
+	list-style-item: none;
+	text-align: center;
+}
+h|ol > h|li + h|li:before {
+	content: "↓";
+	display: block;
+	text-align: center;
+}
+
+h|dl {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+h|dt {
+	display: list-item;
+	margin-left: 1em;
+}
+h|dd {
+	display: block;
+	margin-left: 3em;
+}
+
+h|p {
+	display: block;
+	text-indent: 1em;
+}
+
+h|l {
+	display: block;
+}
+
+h|dfn {
+	font-weight: bolder;
+}
+
+h|table {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+h|tbody {
+	display: table-row-group;
+}
+h|tr {
+	display: table-row;
+}
+h|th, h|td {
+	display: table-cell;
+}
+
+
+
