@@ -6,15 +6,55 @@
       <field name="NS_SLIDE">'urn:x-suika-fam-cx:markup:slide:1'</field>
       <field name="NS_XHTML1">'http://www.w3.org/1999/xhtml'</field>
       <field name="NS_XHTML2">'http://www.w3.org/2002/06/xhtml2'</field>
+      <method name="getSlideList" type="application/x-javascript">
+        <body xml:space="preserve"><![CDATA[
+          return document.getElementsByTagNameNS (this.NS_SLIDE, 'slides')[0]
+                         .getElementsByTagNameNS (this.NS_SLIDE, 'slide');
+        ]]></body>
+      </method>
+      <method name="createSlideBodyElement" type="application/x-javascript">
+        <parameter name="slide"/>
+        <body xml:space="preserve"><![CDATA[
+          var slideBody = document.createElementNS (this.NS_SLIDE, 'slideBody');
+          var notes = document.createElementNS (this.NS_SLIDE, 'notes');
+          var slideChildren = slide.childNodes;
+          while (slideChildren.length) {
+            if (slideChildren[0].namespaceURI === this.NS_SLIDE
+             && slideChildren[0].localName === 'note') {
+              notes.appendChild (slideChildren[0]);
+            } else {
+              slideBody.appendChild (slideChildren[0]);
+            }
+          }
+          slide.appendChild (slideBody);
+          if (notes.childNodes.length)
+            slide.appendChild (notes);
+        ]]></body>
+      </method>
       <constructor type="application/x-javascript" xml:space="preserve"><![CDATA[
-        var slides = document.getElementsByTagNameNS (this.NS_SLIDE, 'slides')[0].getElementsByTagNameNS (this.NS_SLIDE, 'slide');
+        var topLevelNodes = document.documentElement.childNodes;
+        for (var i = 0; i < topLevelNodes.length;) {
+          if (topLevelNodes[i].nodeType === TEXT_NODE
+           || topLevelNodes[i].nodeType === COMMENT_NODE) {
+            document.documentElement.removeChild (topLevelNodes[i]);
+          } else {
+            i++;
+          }
+        }
+        var slides = this.getSlideList ();
         for (var i = 0; i < slides.length; i++) {
           slides[i].setAttribute ('slideIndex', i);
+          this.createSlideBodyElement (slides[i]);
         }
         
         var h = document.getElementsByTagNameNS (this.NS_XHTML2, 'head')[0];
           // Common slide style
             var l = document.createElementNS (this.NS_XHTML1, 'link');
+            l.setAttribute ('rel', 'stylesheet');
+            l.setAttribute ('href', this.SLIDE_XBL_BASE+'xhtml2.css');
+            h.appendChild (l);
+            
+            l = document.createElementNS (this.NS_XHTML1, 'link');
             l.setAttribute ('rel', 'stylesheet');
             l.setAttribute ('href', this.SLIDE_XBL_BASE+'slide-style.css');
             h.appendChild (l);
@@ -58,12 +98,17 @@
             return ret.join('');
         ]]></body>
       </method>
+      <method name="getSlideList" type="application/x-javascript">
+        <body xml:space="preserve"><![CDATA[
+          return document.getElementsByTagNameNS (this.NS_SLIDE, 'slides')[0]
+                         .getElementsByTagNameNS (this.NS_SLIDE, 'slide');
+        ]]></body>
+      </method>
       <method name="setCurrentSlide" type="application/x-javascript">
         <parameter name="n"/>
         <body xml:space="preserve"><![CDATA[
-          var slides = document.getElementsByTagNameNS (this.NS_SLIDE, 'slides')[0].getElementsByTagNameNS (this.NS_SLIDE, 'slide');
+          var slides = this.getSlideList ();
           if (n < 0) n = slides.length + n;	// -1 = slides.length-1
-          //else if (slides.length <= n) n = slides.length - 1;
           else if (slides.length <= n) n = 0;
           for (var i = 0; i < slides.length; i++) {
             slides[i].setAttribute ('-isCurrentSlide', (i == n ? 'yes' : 'no'));
@@ -74,7 +119,7 @@
       <method name="getSlideTitle" type="application/x-javascript">
         <parameter name="n"/>
         <body xml:space="preserve"><![CDATA[
-          var slides = document.getElementsByTagNameNS (this.NS_SLIDE, 'slides')[0].getElementsByTagNameNS (this.NS_SLIDE, 'slide');
+          var slides = this.getSlideList ();
           if (n < 0) n = slides.length + n;	// -1 = slides.length-1
           else if (slides.length <= n) n = slides.length - 1;
           if (slides[n]) {

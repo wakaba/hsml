@@ -18,6 +18,36 @@
     el[i].style.marginTop = '1em';
     el[i].style.marginBottom = '1em';
   }
+  
+<!-- h|ol -->
+  var el = element.getElementsByTagName ('ol');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'block';
+    el[i].style.marginTop = '1em';
+    el[i].style.marginBottom = '1em';
+    
+    var li = el[i].childNodes;
+    for (var i = 0; i < li.length; i++) {
+      if (li[i].tagName == 'li') {
+        li[i].style.display = 'block';
+        li[i].style.listStyle = 'none';
+        li[i].style.textAlign = 'center';
+        
+        if (i > 0) {
+          var beforeNode = element.document.createElement ('div');
+          beforeNode.appendChild (element.document.createTextNode ('↓'));
+          beforeNode.style.display = 'block';
+          beforeNode.style.textAlign = 'center';
+          
+          if (li[i].childNodes.length) {
+            li[i].insertBefore (beforeNode, li[i].childNodes[0]);
+          } else {
+            li[i].appendChild (beforeNode);
+          }
+        }
+      }
+    }
+  }
 
 <!-- h|nl -->
   var el = element.getElementsByTagName ('nl');
@@ -39,6 +69,37 @@
   var el = element.getElementsByTagName ('l');
   for (var i = 0; i < el.length; i++) {
     el[i].style.display = 'block';
+  }
+
+<!-- h|table -->
+  var el = element.getElementsByTagName ('table');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'block';
+    el[i].style.textAlign = 'center';
+  }
+
+<!-- h|tbody -->
+  var el = element.getElementsByTagName ('tbody');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'block';
+  }
+
+<!-- h|tr -->
+  var el = element.getElementsByTagName ('tr');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'block';
+  }
+
+<!-- h|th -->
+  var el = element.getElementsByTagName ('td');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'inline-block';
+  }
+
+<!-- h|td -->
+  var el = element.getElementsByTagName ('td');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'inline-block';
   }
 
 </SCRIPT>

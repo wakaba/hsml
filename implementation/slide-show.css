@@ -16,6 +16,7 @@
 	font-size: 40px;
 	line-height: 1.8 !important;
     }
+    
     s|slide[-isCurrentSlide='yes'] {
       /* display: block; */
     }
