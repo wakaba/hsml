@@ -61,5 +61,7 @@ h|h {
 }
 
 h|li h|l {
+	display: block;
+	text-align: center;
 	color: red;
 }
