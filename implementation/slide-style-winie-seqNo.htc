@@ -1,0 +1,18 @@
+<!-- HSML Implementation : s:seqNo element displaying for WinIE -->
+<PUBLIC:COMPONENT>
+<PUBLIC:PROPERTY NAME="name" />
+<SCRIPT LANGUAGE="JScript">
+if (!element.document.__HSML_IMPLIE__)
+  element.document.__HSML_IMPLIE__ = new Array ();
+if (!element.document.__HSML_IMPLIE__.seqNo)
+  element.document.__HSML_IMPLIE__.seqNo = new Array ();
+
+<!-- s|seqNo -->
+  element.appendChild (document.createTextNode (' (' + incrementSeqNumber (name) + ')'));
+function incrementSeqNumber (name) {
+  if (isNaN (element.document.__HSML_IMPLIE__.seqNo[name]))
+    element.document.__HSML_IMPLIE__.seqNo[name] = 0;
+  return ++element.document.__HSML_IMPLIE__.seqNo[name];
+}
+</SCRIPT>
+</PUBLIC:COMPONENT>

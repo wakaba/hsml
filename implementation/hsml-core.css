@@ -5,3 +5,6 @@
     h|head + s|slide {
       -moz-binding: url(slide-xbl.xml#slideCore);
     }
+
+@import 'slide-style-winie.css';
+@import 'slide-show-winie.css';

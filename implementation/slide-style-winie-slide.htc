@@ -1,0 +1,31 @@
+<PUBLIC:COMPONENT>
+<PUBLIC:PROPERTY NAME="role" />
+<SCRIPT LANGUAGE="JScript">
+/* s|slide {
+  display: block;
+  padding: 1.5em;
+  overflow: auto;
+  line-height: 2.1;
+  font-family: sans-serif;
+} */
+  element.style.display = 'block';
+  element.style.padding = '1.5em';
+  element.style.overflow = 'auto';
+  element.style.lineHeight = '2.1';
+  element.style.fontFamily = 'sans-serif';
+  
+// s|slide h|h:first-child
+  var el = element.getElementsByTagName ('h')[0];
+  el.style.textAlign = 'center';
+  el.style.fontSize = '200%';
+
+// s|slide[role~="cover"] h|h:first-child
+if (role == 'cover') {
+  var title = element.getElementsByTagName ('h')[0];
+  title.style.textAlign = 'center';
+  title.style.marginTop = '25%';
+  title.style.marginBottom = '25%';
+  title.style.fontSize = '270%';
+}
+</SCRIPT>
+</PUBLIC:COMPONENT>

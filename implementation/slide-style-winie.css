@@ -1,0 +1,17 @@
+@charset 'iso-2022-jp';
+
+/* Slideset (root element) */
+slides {
+	behavior: url(../implementation/slide-style-winie-slides.htc);
+}
+
+/* A slide */
+slide {
+	behavior: url(../implementation/xhtml2-winie.htc)
+	          url(../implementation/slide-style-winie-slide.htc);
+}
+
+/* s|seqNo */
+seqNo {
+	behavior: url(../implementation/slide-style-winie-seqNo.htc);
+}

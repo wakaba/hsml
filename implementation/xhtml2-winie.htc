@@ -1,0 +1,45 @@
+<!-- HSML Implementation : XHTML 2 Stylesheet for WinIE -->
+<PUBLIC:COMPONENT>
+<SCRIPT LANGUAGE="JScript">
+<!-- h|h -->
+  var el = element.getElementsByTagName ('h');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'block';
+    el[i].style.fontWeight = 'bolder';
+    el[i].style.marginBottom = '0.5em';
+    el[i].style.fontFamily = '"MS P Gothic", "Arial", sans-serif';
+    el[i].style.lineHeight = '1.1';
+  }
+  
+<!-- h|ul -->
+  var el = element.getElementsByTagName ('ul');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'block';
+    el[i].style.marginTop = '1em';
+    el[i].style.marginBottom = '1em';
+  }
+
+<!-- h|nl -->
+  var el = element.getElementsByTagName ('nl');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'block';
+    el[i].style.marginTop = '1em';
+    el[i].style.marginBottom = '1em';
+    el[i].style.listStyleType = 'disc';
+  }
+  
+<!-- h|li -->
+  var el = element.getElementsByTagName ('li');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'list-item';
+    el[i].style.marginLeft = '1em';
+  }
+  
+<!-- h|l -->
+  var el = element.getElementsByTagName ('l');
+  for (var i = 0; i < el.length; i++) {
+    el[i].style.display = 'block';
+  }
+
+</SCRIPT>
+</PUBLIC:COMPONENT>

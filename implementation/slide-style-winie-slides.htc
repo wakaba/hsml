@@ -1,0 +1,18 @@
+<PUBLIC:COMPONENT>
+<PUBLIC:ATTACH FOR="window" EVENT="onload" ONEVENT="init()" />
+<SCRIPT LANGUAGE="JScript">
+function init () {
+  /* s|slides {
+    display: block;
+    margin: 0; border-style: none; padding: 0;
+  } */
+  element.style.display = 'block';
+  element.style.margin = '0';
+  element.style.borderStyle = 'none';
+  element.style.padding = '0';
+  
+  // h|title, h1|title { display : ext|window-title }
+  window.document.title = head.getElementsByTagName ('title')[0].innerText;
+}
+</SCRIPT>
+</PUBLIC:COMPONENT>
