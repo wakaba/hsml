@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<bindings xmlns="http://www.mozilla.org/xbl">
+  <binding id="slideCore">
+    <implementation>
+      <field name="SLIDE_XBL_BASE">'http://suika.fam.cx/~wakaba/-temp/slide/implementation/'</field>
+      <field name="NS_SLIDE">'urn:x-suika-fam-cx:markup:slide:1'</field>
+      <field name="NS_XHTML1">'http://www.w3.org/1999/xhtml'</field>
+      <field name="NS_XHTML2">'http://www.w3.org/2002/06/xhtml2'</field>
+      <constructor type="application/x-javascript" xml:space="preserve"><![CDATA[
+        var slides = document.getElementsByTagNameNS (this.NS_SLIDE, 'slides')[0].getElementsByTagNameNS (this.NS_SLIDE, 'slide');
+        for (var i = 0; i < slides.length; i++) {
+          slides[i].setAttribute ('slideIndex', i);
+        }
+        
+        var h = document.getElementsByTagNameNS (this.NS_XHTML2, 'head')[0];
+          // Common slide style
+            var l = document.createElementNS (this.NS_XHTML1, 'link');
+            l.setAttribute ('rel', 'stylesheet');
+            l.setAttribute ('href', this.SLIDE_XBL_BASE+'slide-style.css');
+            h.appendChild (l);
+            
+          // Slide listing style
+            l = document.createElementNS (this.NS_XHTML1, 'link');
+            l.setAttribute ('rel', 'stylesheet');
+            l.setAttribute ('href', this.SLIDE_XBL_BASE+'slide-list.css');
+            l.setAttribute ('title', 'Slide List');
+            h.appendChild (l);
+            
+          // Slide showing style
+            l = document.createElementNS (this.NS_XHTML1, 'link');
+            l.setAttribute ('rel', 'stylesheet alternate');
+            l.setAttribute ('href', this.SLIDE_XBL_BASE+'slide-show.css');
+            l.setAttribute ('title', 'Slideshow');
+            h.appendChild (l);
+        }
+      ]]></constructor>
+    </implementation>
+  </binding>
+  <binding id="slideshow">
+    <implementation>
+      <field name="currentSlideIndex">0</field>
+      <field name="NS_SLIDE">'urn:x-suika-fam-cx:markup:slide:1'</field>
+      <field name="NS_XHTML1">'http://www.w3.org/1999/xhtml'</field>
+      <field name="NS_XHTML2">'http://www.w3.org/2002/06/xhtml2'</field>
+      <method name="getInnerText" type="application/x-javascript">
+        <parameter name="node"/>
+        <body xml:space="preserve"><![CDATA[
+          // <http://white.sakura.ne.jp/~piro/xul/tips/x0013.html>
+            var nodes = node.childNodes;
+            var ret = [];
+            for (var i = 0; i < nodes.length; i++)
+              if (nodes[i].hasChildNodes())
+                ret.push(this.getInnerText(nodes[i]));
+              else if (nodes[i].nodeType == Node.TEXT_NODE)
+                ret.push(nodes[i].nodeValue);
+              else if (nodes[i].alt)
+                ret.push(nodes[i].alt);
+            return ret.join('');
+        ]]></body>
+      </method>
+      <method name="setCurrentSlide" type="application/x-javascript">
+        <parameter name="n"/>
+        <body xml:space="preserve"><![CDATA[
+          var slides = document.getElementsByTagNameNS (this.NS_SLIDE, 'slides')[0].getElementsByTagNameNS (this.NS_SLIDE, 'slide');
+          if (n < 0) n = slides.length + n;	// -1 = slides.length-1
+          //else if (slides.length <= n) n = slides.length - 1;
+          else if (slides.length <= n) n = 0;
+          for (var i = 0; i < slides.length; i++) {
+            slides[i].setAttribute ('-isCurrentSlide', (i == n ? 'yes' : 'no'));
+          }
+          this.currentSlideIndex = n;
+        ]]></body>
+      </method>
+      <method name="getSlideTitle" type="application/x-javascript">
+        <parameter name="n"/>
+        <body xml:space="preserve"><![CDATA[
+          var slides = document.getElementsByTagNameNS (this.NS_SLIDE, 'slides')[0].getElementsByTagNameNS (this.NS_SLIDE, 'slide');
+          if (n < 0) n = slides.length + n;	// -1 = slides.length-1
+          else if (slides.length <= n) n = slides.length - 1;
+          if (slides[n]) {
+            var h = this.getInnerText (slides[n].getElementsByTagNameNS (this.NS_XHTML2, 'h')[0]);
+            if (h) {
+              return h;
+            } else {
+              return 'Slide ' + n;
+            }
+          } else {
+            return '';
+          }
+        ]]></body>
+      </method>
+      <method name="onKeyDown" type="application/x-javascript">
+        <parameter name="e"/>
+        <parameter name="myThis"/>
+        <body xml:space="preserve"><![CDATA[
+          if (e.keyCode == 13 || e.keyCode == 39) {	// Enter / <-
+            myThis.setCurrentSlide (myThis.currentSlideIndex + 1);
+          } else if (e.keyCode == 8 || e.keyCode == 37) {	// BS / ->
+            myThis.setCurrentSlide (myThis.currentSlideIndex - 1);
+            e.preventDefault ();
+          }
+          //else alert ('KC: ' + (e.keyCode) + ', CC: ' + (e.charCode));
+        ]]></body>
+      </method>
+      <constructor type="application/x-javascript" xml:space="preserve">
+        <![CDATA[
+          if (document.__slideControl__) return;
+          document.__slideControl__ = this;
+          
+          var myThis = this;
+          document.defaultView.addEventListener ('keydown', function (e) {
+            myThis.onKeyDown (e, myThis);
+          }, false);
+          
+          var h = document.getElementsByTagNameNS (this.NS_XHTML2, 'head')[0];
+            var l = document.createElementNS (this.NS_XHTML1, 'link');
+            l.setAttribute ('rel', 'first');
+            l.setAttribute ('href', 'javascript:document.__slideControl__.setCurrentSlide(0)');
+            l.setAttribute ('title', this.getSlideTitle (0));
+            h.appendChild (l);
+            
+            l = document.createElementNS (this.NS_XHTML1, 'link');
+            l.setAttribute ('rel', 'last');
+            l.setAttribute ('href', 'javascript:document.__slideControl__.setCurrentSlide(-1)');
+            l.setAttribute ('title', this.getSlideTitle (-1));
+            h.appendChild (l);
+            
+            l = document.createElementNS (this.NS_XHTML1, 'link');
+            l.setAttribute ('rel', 'next');
+            l.setAttribute ('href', 'javascript:document.__slideControl__.setCurrentSlide(document.__slideControl__.currentSlideIndex+1)');
+            h.appendChild (l);
+            
+            l = document.createElementNS (this.NS_XHTML1, 'link');
+            l.setAttribute ('rel', 'prev');
+            l.setAttribute ('id', 'link-prev-page');
+            l.setAttribute ('href', 'javascript:document.__slideControl__.setCurrentSlide(document.__slideControl__.currentSlideIndex-1)');
+            h.appendChild (l);
+          this.setCurrentSlide (0);
+        ]]>
+      </constructor>
+    </implementation>
+  </binding>
+  <binding id="seqNo">
+    <implementation>
+      <field name="seqNo">[]</field>
+      <constructor type="application/x-javascript" xml:space="preserve"><![CDATA[
+        var t;
+        var seqName = this.getAttribute ('name');
+        if (!document.__slideSeqNo__) {
+          document.__slideSeqNo__ = [];
+        }
+        t = document.__slideSeqNo__;
+        if (t[seqName]) {
+          t[seqName]++;
+        } else {
+          t[seqName] = 1;
+        }
+        this.setAttribute ('-seq-no', t[seqName]);
+      ]]></constructor>
+    </implementation>
+  </binding>
+  <binding id="refTo">
+    <implementation>
+      <field name="NS_SLIDE">'urn:x-suika-fam-cx:markup:slide:1'</field>
+      <field name="NS_XHTML1">'http://www.w3.org/1999/xhtml'</field>
+      <field name="NS_XHTML2">'http://www.w3.org/2002/06/xhtml2'</field>
+      <field name="NS_XLINK">'http://www.w3.org/1999/xlink'</field>
+      <method name="getInnerText" type="application/x-javascript">
+        <parameter name="node"/>
+        <body xml:space="preserve"><![CDATA[
+          // <http://white.sakura.ne.jp/~piro/xul/tips/x0013.html>
+            var nodes = node.childNodes;
+            var ret = [];
+            for (var i = 0; i < nodes.length; i++)
+              if (nodes[i].hasChildNodes())
+                ret.push(this.getInnerText(nodes[i]));
+              else if (nodes[i].nodeType == Node.TEXT_NODE)
+                ret.push(nodes[i].nodeValue);
+              else if (nodes[i].alt)
+                ret.push(nodes[i].alt);
+            return ret.join('');
+        ]]></body>
+      </method>
+      <constructor type="application/x-javascript" xml:space="preserve"><![CDATA[
+        var targetId = this.getAttribute ('to');
+        var targetElement = document.getElementById (targetId);
+        if (targetElement && (targetElement.namespaceURI == this.NS_SLIDE) && (targetElement.localName == 'slide')) {
+          targetElement = targetElement.getElementsByTagNameNS (NS_XHTML2, 'h')[0];
+        }
+        
+        if (targetElement) {
+          for (var i = 0; i < targetElement.childNodes.length; i++) {
+            var cN = targetElement.childNodes[i];
+            //if (cN.nodeType != ATTRIBUTE_NODE)
+            //  this.appendChild (cN.cloneNode);
+            this.appendChild (document.createTextNode (this.getInnerText (cN)));
+          }
+          this.setAttributeNS (this.NS_XLINK, 'type', 'simple');
+          this.setAttributeNS (this.NS_XLINK, 'href', '#' + targetId);
+        }
+      ]]></constructor>
+    </implementation>
+  </binding>
+</bindings>
+<!-- ***** BEGIN LICENSE BLOCK *****
+   - Version: MPL 1.1/GPL 2.0/LGPL 2.1
+   -
+   - The contents of this file are subject to the Mozilla Public License Version
+   - 1.1 (the "License"); you may not use this file except in compliance with
+   - the License. You may obtain a copy of the License at
+   - <http://www.mozilla.org/MPL/>
+   -
+   - Software distributed under the License is distributed on an "AS IS" basis,
+   - WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+   - for the specific language governing rights and limitations under the
+   - License.
+   -
+   - The Original Code is HSML experimental implemention code.
+   -
+   - The Initial Developer of the Original Code is Wakaba.
+   - Portions created by the Initial Developer are Copyright (C) 2003
+   - the Initial Developer. All Rights Reserved.
+   -
+   - Contributor(s):
+   -   Wakaba <w@suika.fam.cx>
+   -
+   - Alternatively, the contents of this file may be used under the terms of
+   - either the GNU General Public License Version 2 or later (the "GPL"), or
+   - the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+   - in which case the provisions of the GPL or the LGPL are applicable instead
+   - of those above. If you wish to allow use of your version of this file only
+   - under the terms of either the GPL or the LGPL, and not to allow others to
+   - use your version of this file under the terms of the MPL, indicate your
+   - decision by deleting the provisions above and replace them with the notice
+   - and other provisions required by the LGPL or the GPL. If you do not delete
+   - the provisions above, a recipient may use your version of this file under
+   - the terms of any one of the MPL, the GPL or the LGPL.
+   -
+   - ***** END LICENSE BLOCK ***** -->

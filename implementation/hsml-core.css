@@ -1,0 +1,7 @@
+    @namespace s 'urn:x-suika-fam-cx:markup:slide:1';
+    @namespace h1 'http://www.w3.org/1999/xhtml';
+    @namespace h 'http://www.w3.org/2002/06/xhtml2';
+    
+    h|head + s|slide {
+      -moz-binding: url(slide-xbl.xml#slideCore);
+    }

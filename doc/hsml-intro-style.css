@@ -1,0 +1,65 @@
+@namespace s 'urn:x-suika-fam-cx:markup:slide:1';
+@namespace h1 'http://www.w3.org/1999/xhtml';
+@namespace h 'http://www.w3.org/2002/06/xhtml2';
+
+@namespace l 'http://suika.fam.cx/~wakaba/-temp/2003/05/01/layout-table';
+l|layout {
+	display: table;
+}
+l|row {
+	display: table-row;
+}
+l|cell {
+	display: table-cell;
+}
+
+#wadai1-wadai2 {
+	font-size: 50%;
+	margin-left: 29%;
+	margin-right: 1%;
+	margin-top: -2.7em;
+}
+#wadai1-wadai2 l|layout {
+	width: 75%;
+	max-width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#wadai1-wadai2 l|cell {
+	padding-right: .5em;
+	width: 50%;
+}
+#wadai1-wadai2 l|cell + l|cell {
+	padding-left: .5em;
+	padding-right: 0;
+}
+#wadai1-wadai2 h|h {
+	font-size: 120%;
+	line-height: 1.1;
+	border-bottom: dashed 1px red;
+	color: red;
+}
+#wadai1-wadai2 h|h + * {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+#wadai1-wadai2 h|ul > h|li:not(h|nl) {
+	list-style-type: none;
+	font-weight: bolder;
+}
+#wadai1-wadai2 h|nl > h|li {
+	list-style-type: square;
+	font-weight: normal;
+}
+
+[xml|space="preserve"] {
+	font-size: 70%;
+}
+
+h|h {
+	color: blue;
+}
+
+h|li h|l {
+	color: red;
+}

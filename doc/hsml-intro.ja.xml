@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="iso-2022-jp"?>
+<?xml-stylesheet href="../implementation/hsml-core.css" type="text/css"?>
+<?xml-stylesheet href="hsml-intro-style.css" type="text/css"?>
+<!DOCTYPE slides [
+  <!ENTITY h "http://www.w3.org/2002/06/xhtml2">
+  <!ENTITY ns.slide "urn:x-suika-fam-cx:markup:slide:1">
+  <!ATTLIST slide id ID #IMPLIED>
+  <!ATTLIST fig id ID #IMPLIED>
+  <!ENTITY sep "構造と表現の分離"><!-- 構造, 表現, そして案内の分離 -->
+]>
+<slides xmlns="&ns.slide;" xmlns:s="&ns.slide;"
+        xmlns:h1="http://www.w3.org/1999/xhtml"
+        xmlns:h="&h;"
+        xml:lang="ja">
+<h:head>
+  <h1:title><h:abbr title="Hyper Slide Markup Language" xml:lang="en">HSML</h:abbr> の紹介</h1:title>
+</h:head>
+
+<slide>
+<h:h>Hyper Slide Markup Language (HSML) <seqNo name="hsml"/></h:h>
+<ul xmlns="&h;">
+<li>すごいスライドをマーク付けする言語</li>
+<li>Web ブラウザの全画面表示を使って発表のスライドを上映</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>Hyper Slide Markup Language (HSML) <seqNo name="hsml"/></h:h>
+<ul xmlns="&h;">
+<li>単純 (HTML に毛が生えた程度)</li>
+<li>お金がかからない (テキスト・エディタで書いて、 Web ブラウザで表示)</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>Hyper Slide Markup Language (HSML) <seqNo name="hsml"/></h:h>
+
+<ul xmlns="&h;">
+<li><nl><label><abbr title="Extensible Markup Language" xml:lang="en">XML</abbr> に基づくマーク付け言語</label>
+	<li>XML 名前空間</li>
+	<li>スタイル言語による表示の制御</li>
+	<li>HSML より XHSML の方がよかったかも</li>
+</nl></li>
+<li>&sep;</li>
+</ul>
+
+</slide>
+
+<slide>
+<h:h><abbr title="Extensible Markup Language" xml:lang="en">XML</abbr> に基づくマーク付け言語 <seqNo name="xmlBased"/></h:h>
+<ul xmlns="&h;">
+<li><abbr xml:lang="en">XML</abbr>: Extensible Markup Language</li>
+<li>既存の <abbr xml:lang="en">XML</abbr>・<abbr xml:lang="en">SGML</abbr> の処理系を利用可能</li>
+<li><abbr xml:lang="en" title="Extensible Hypertext Markup Language">XHTML</abbr> (文章), MathML (数式), SVG (図), SMIL (動的効果) の埋め込み
+(<abbr xml:lang="en">XML</abbr> 名前空間)</li>
+</ul>
+</slide>
+
+<slide>
+<h:h><abbr title="Extensible Markup Language" xml:lang="en">XML</abbr> に基づくマーク付け言語 <seqNo name="xmlBased"/></h:h>
+<ul xmlns="&h;">
+<li>表示の制御には <abbr xml:lang="en" title="Cascading Style Sheets">CSS</abbr> や XSL などを使用</li>
+<li>各種の Web 標準を積極的に採用</li>
+</ul>
+</slide>
+
+<slide id="xml-namespace">
+<h:h><abbr xml:lang="en">XML</abbr> 名前空間 <s:seqNo name="xml-ns"/></h:h>
+<ul xmlns="&h;">
+<li><nl><label><abbr xml:lang="en">XML</abbr> 名前空間</label>
+	<li>一文書中で複数の語彙集合を混在させる仕組み</li>
+	<li>ほとんどの XML の処理系・応用が実装</li>
+</nl></li>
+<li>スライド内の文章や数式などの記述方法が必要</li>
+</ul>
+</slide>
+
+<slide id="xml-namespace">
+<h:h><abbr xml:lang="en">XML</abbr> 名前空間 <s:seqNo name="xml-ns"/></h:h>
+<ul xmlns="&h;">
+<li><nl><label><abbr xml:lang="en" title="Extensible Hypertext Markup Language">XHTML</abbr> (文章), MathML (数式) などの<dfn>語彙</dfn>が既に存在</label>
+	<li class="so-that"><nl><label>同様の語彙を再定義するのは無駄</label>
+		<li>設計の手間</li>
+		<li>実装の手間</li>
+		<li>学習の手間</li>
+	</nl></li>
+	<li class="so-that">既存の言語を埋め込めばよい</li>
+</nl></li>
+</ul>
+</slide>
+
+<slide>
+
+<h:h><abbr xml:lang="en">XML</abbr> 名前空間 <s:seqNo name="xml-ns"/></h:h>
+
+<fig class="example">
+
+<h:div xml:space="preserve"><![CDATA[<slide xmlns="]]>&ns.slide;<![CDATA["
+       xmlns:h="]]>&h;<![CDATA[">
+  <h:h>見出し (XHTML の語彙を借用)</h:h>
+  <ul xmlns="]]>&h;<![CDATA[">
+  <li>項目</li>
+  <li>(XHTML の語彙を借用)</li>
+  </ul>
+</slide>]]></h:div>
+
+<!-- MathML を使った例も欲しい。 -->
+
+<caption>マーク付けの例</caption>
+</fig>
+
+</slide>
+
+
+<slide>
+
+<h:h>表示の制御</h:h>
+
+<ul xmlns="&h;">
+<li>スライドの構成とその内容を表現形に変換</li>
+<li><nl><label>XML の主要な2つのスタイル言語:</label>
+	<li><abbr title="Cascading Style Sheets" xml:lang="en">CSS</abbr></li>
+	<li>XSL (= XSLT + XSL-FO)</li>
+</nl></li>
+<li>一つの元データから、複数のスタイル・シートによる複数の表現形へ</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>Hyper Slide Markup Language (HSML) <seqNo name="hsml"/></h:h>
+
+<ul xmlns="&h;">
+<li><nl><label>&sep;</label>
+	<li>一つの文書で、発表を全てカバー</li>
+	<li>再利用による作業効率の向上</li>
+	<li>そのまま Web やその他の媒体へ</li>
+</nl></li>
+</ul>
+
+</slide>
+
+
+<slide>
+<h:h>再利用 <seqNo name="reuse"/></h:h>
+<ul xmlns="&h;">
+<li><nl><label>内容と表現が分かれていれば、</label>
+	<li>別の機会にも再利用</li>
+	<li>独立して流通させる (“素材集”)</li>
+	<li>表現は流用して発表内容に集中</li>
+</nl></li></ul>
+
+<fig class="example" id="wadai1-wadai2">
+
+<layout xmlns="http://suika.fam.cx/~wakaba/-temp/2003/05/01/layout-table">
+  <row>
+    <cell>
+      <h:h>話題 1 の発表</h:h>
+      <ul xmlns="&h;">
+      <li><nl><label>話題 1 とは何か</label>
+      	<li>話題 1 の歴史</li>
+      	<li>話題 1 の光と影</li>
+      </nl></li>
+      <li>だからこそ話題 1</li>
+      </ul>
+    </cell>
+    <cell>
+      <h:h>話題 2 の発表</h:h>
+      <ul xmlns="&h;">
+      <li>話題 2 の傾向と対策</li>
+      <li><nl><label>今日の話題 2</label>
+      	<li>その現状は?</li>
+      	<li>行政の対策は?</li>
+      </nl></li>
+      </ul>
+    </cell>
+  </row>
+</layout>
+
+</fig>
+</slide>
+
+<slide>
+<h:h>再利用 <seqNo name="reuse"/></h:h>
+<dl xmlns="&h;">
+<dt>内容</dt>
+	<dd>発表内容を構造化して (「見出し」, 「箇条書き」,... という印をつけて) 記述</dd>
+<dt>表現</dt>
+	<dd>「見出し」, 「箇条書き」,... の表現 (文字の大きさ, 色など) をそれぞれ記述 (<dfn>スタイル・シート</dfn>)</dd>
+</dl>
+</slide>
+
+
+<slide>
+<h:h>一つの文書で、 発表を全てカバー <seqNo name="writeOnce"/></h:h>
+
+<ul xmlns="&h;">
+<li><nl><label>一つのスライド発表の様々な「表現形」</label>
+	<li>大画面などに投影する本来の「スライド」上映</li>
+	<li>スライドを使う発表そのものの原稿</li>
+	<li>配布資料としてのスライド一覧 + α</li>
+</nl>
+	<l>単一の「発表」を違った角度から見たもの</l>
+</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>一つの文書で、 発表を全てカバー <seqNo name="writeOnce"/></h:h>
+
+<ul xmlns="&h;">
+<li>一つのスライド発表の様々な「表現形」
+	<l>単一の「発表」を違った角度から見たもの</l>
+</li>
+<li>一つの文書 (構造) に、それぞれの目的のスタイル・シートを適用することで実現
+	<l>スタイル・シートは「見る角度」の制御棒</l>
+</li>
+</ul>
+</slide>
+
+
+<slide>
+<h:h>そのまま Web やその他の媒体へ <seqNo name="miscMedia"/></h:h>
+<ul xmlns="&h;">
+<li><nl><label>Web ブラウザ向けスタイル・シート</label>
+	<li>XML 対応ブラウザにはそのまま</li>
+	<li>XML 未対応ブラウザには XSLT スタイル・シートで HTML + CSS に</li>
+</nl></li>
+</ul>
+</slide>
+
+<slide>
+<h:h>そのまま他の媒体へ <seqNo name="miscMedia"/></h:h>
+<ul xmlns="&h;">
+<li><nl><label>OHP 印刷用スタイル・シート</label>
+	<li>OHP 向けの色選択など</li>
+</nl></li>
+<li><nl><label>テレビ用スタイル・シート</label>
+	<li>(テレビ会議型の発表会などで)</li>
+</nl></li>
+<li>スタイル・シート (と対応機器) 次第でどんな環境にも対応</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>Mozilla での実装 <seqNo name="mozImplement"/></h:h>
+<ul xmlns="&h;">
+<li><nl><label>なぜ Mozilla か</label>
+	<li>Web 標準に適合する最善の実装の一つ</li>
+	<li>全画面表示モード</li>
+</nl></li>
+<li><nl><label>実装の方法</label>
+	<li>資源側から攻める実装</li>
+	<li>利用者側から攻める実装</li>
+</nl></li>
+</ul>
+</slide>
+
+<slide>
+<h:h>資源側から攻める実装</h:h>
+<ul xmlns="&h;">
+<li>資源 (ここではスライド)</li>
+<li>スタイル・シート</li>
+<li>スクリプト言語による記述</li>
+</ul>
+
+<ul xmlns="&h;">
+<!--<li>ブラウザは単にレンダリング・スクリプト実行するだけ</li>-->
+<li class="good">ブラウザ (Mozilla) があればどこでも動く</li>
+<li class="bad">資源に実行動作のための記述が入り込む</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>利用者側から攻める実装</h:h>
+<ul xmlns="&h;">
+<li>資源 (ここではスライド)</li>
+<li>スタイル・シート</li>
+<li>専用の再生ソフトウェア</li>
+</ul>
+
+<ul xmlns="&h;">
+<li class="good">資源に実行動作のための記述を入れる必要がない</li>
+<li class="bad">再生ソフトウェアを用意する必要がある</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>Mozilla での実装 <seqNo name="mozImplement"/></h:h>
+<ul xmlns="&h;">
+<li><nl><label>資源側から攻める実装</label>
+	<li>スライドを順に表示できる程度は既に完成 (2003年5月現在)</li>
+	<li>CSS 3 (原案), XBL, JavaScript で記述</li>
+</nl></li>
+<li><nl><label>利用者側から攻める実装</label>
+	<li>まだ構想段階</li>
+	<li>XUL, XBL, JavaScript, CSS 3 で記述する予定</li>
+</nl></li>
+</ul>
+</slide>
+
+<slide>
+<h:h>課題</h:h>
+<ul xmlns="&h;">
+<li>表現力の向上</li>
+<li>実装の充実</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>課題: 表現力の向上</h:h>
+<ul xmlns="&h;">
+<li>話の流れに沿って項目を出したり消したり</li>
+<li><nl><label>スライド間のリンク・順序</label>
+	<li>スライドの参照</li>
+	<li>重複スライド</li>
+	<li>流れの分岐</li>
+</nl></li>
+<li>スタイル・ライブラリ</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>課題: 実装の充実 <seqNo name="betterImplemention"/></h:h>
+<ul xmlns="&h;">
+<li><nl><label>Mozilla 以外での実装</label>
+	<li class="bad">Web 標準が完全に実装されていない (XML, CSS, DOM など)</li>
+	<li class="bad">Web 標準が確立していない (XBL, XUL など)</li>
+	<li>実装間の互換性が向上しない限り、可搬性は絵に描いた餅</li>
+</nl></li>
+</ul>
+</slide>
+
+<slide>
+<h:h>課題: 実装の充実 <seqNo name="betterImplemention"/></h:h>
+<ul xmlns="&h;">
+<li><nl><label>現実装の改善</label>
+	<li>スライド一覧表示・印刷</li>
+	<li>スライド及び発表原稿の表示・印刷</li>
+	<li>操作性の向上</li>
+</nl></li>
+<li>スライド・エディタ</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>まとめ</h:h>
+<ul xmlns="&h;">
+<li xml:lang="en">HSML ― Hyper Slide Markup Language</li>
+<li>Web 標準の採用</li>
+<li>&sep;</li>
+<li>実装はこれから</li>
+<li>P○werP○int に勝つ日はまだ遠い:-)</li>
+</ul>
+</slide>
+
+</slides>
