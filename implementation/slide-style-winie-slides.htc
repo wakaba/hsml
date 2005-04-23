@@ -12,7 +12,7 @@ function init () {
   element.style.padding = '0';
   
   // h|title, h1|title { display : ext|window-title }
-  window.document.title = head.getElementsByTagName ('title')[0].innerText;
+  window.document.title = element.getElementsByTagName ('title')[0].innerText;
 }
 </SCRIPT>
 </PUBLIC:COMPONENT>

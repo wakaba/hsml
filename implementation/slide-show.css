@@ -17,10 +17,10 @@
 	line-height: 1.8 !important;
     }
     
-    s|slide[-isCurrentSlide='yes'] {
+    s|slide[s|isCurrentSlide='yes'] {
       /* display: block; */
     }
-    s|slide[-isCurrentSlide='no'] {
+    s|slide[s|isCurrentSlide='no'] {
       display: none;
     }
 

@@ -11,14 +11,57 @@ slides {
 	border-width: 0;
 	padding: 0;
 	font-family: "MS Gothic", "Arial", sans-serif;
-	behavior: url(../implementation/slide-show-winie-slides.htc);
+  behavior: expression(function (element) {
+    element.currentSlide = 0;
+
+    // h|head { display : none }
+    var head = element.getElementsByTagName ('head')[0];
+    head.style.display = 'none';
+
+    document.onkeydown = function () {
+      var slide = getSlideList ();
+      if (event.keyCode == 13 || event.keyCode == 39) {
+        element.currentSlide++;
+        if (element.currentSlide >= slide.length) element.currentSlide = 0;
+        showSlide (element.currentSlide);
+        event.returnValue = false;
+      } else if (event.keyCode == 8 || event.keyCode == 37) {
+        element.currentSlide--;
+        if (element.currentSlide < 0) element.currentSlide = slide.length - 1;
+        showSlide (element.currentSlide);
+        event.returnValue = false;
+      }
+    } /* keydown */
+
+    element.onmousedown = function () {
+      var slide = getSlideList ();
+      if (event.button == 1) {
+        element.currentSlide++;
+        if (element.currentSlide >= slide.length) element.currentSlide = 0;
+        showSlide (element.currentSlide);
+        event.returnValue = false;
+      }
+    }
+
+    function showSlide (n) {
+      var slide = getSlideList ();
+      for (var i = 0; i < slide.length; i++) {
+        slide[i].runtimeStyle.display = (i == n) ? 'block' : 'none';
+      }
+    }
+
+    function getSlideList () {
+      return window.document.getElementsByTagName ('slide');
+    }
+
+    runtimeStyle.behavior = 'none';
+  } (this)); /* NOTE: See also slide-style-winie.css */
 }
 
 /* s|slide */
 slide {
-	width: 100%;
-	height: 90%;
-	margin: 1em;
-	border: groove 2px gray;
-	font-size: 200%;
+  width: 100%;
+  height: 100%;
+  border: groove 1px #C0C0C0;
+  font-size: 200%;
 }
