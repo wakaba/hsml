@@ -33,14 +33,12 @@ slides {
       }
     } /* keydown */
 
-    element.onmousedown = function () {
+    element.ondblclick = function () {
       var slide = getSlideList ();
-      if (event.button == 1) {
-        element.currentSlide++;
-        if (element.currentSlide >= slide.length) element.currentSlide = 0;
-        showSlide (element.currentSlide);
-        event.returnValue = false;
-      }
+      element.currentSlide++;
+      if (element.currentSlide >= slide.length) element.currentSlide = 0;
+      showSlide (element.currentSlide);
+      event.returnValue = false;
     }
 
     function showSlide (n) {

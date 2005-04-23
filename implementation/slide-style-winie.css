@@ -123,7 +123,7 @@ slide {
     for (var i = 0; i < el.length; i++) {
       el[i].style.display = 'inline-block';
     }
-
+    
     /* s|slide */
     element.style.display = 'block';
     element.style.padding = '1.5em';

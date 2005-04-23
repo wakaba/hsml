@@ -67,7 +67,7 @@
             
           // Slide listing style
             l = document.createElementNS (this.NS_XHTML1, 'link');
-            l.setAttribute ('rel', 'stylesheet');
+            l.setAttribute ('rel', 'alternate stylesheet');
             l.setAttribute ('href',
                             /* URI-reference== */
                               this.SLIDE_XBL_BASE+'slide-list.css'
@@ -77,7 +77,7 @@
             
           // Slide showing style
             l = document.createElementNS (this.NS_XHTML1, 'link');
-            l.setAttribute ('rel', 'stylesheet alternate');
+            l.setAttribute ('rel', 'stylesheet');
             l.setAttribute ('href',
                             /* URI-reference== */
                               this.SLIDE_XBL_BASE+'slide-show.css'

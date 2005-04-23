@@ -100,7 +100,28 @@ h|tr {
 }
 h|th, h|td {
 	display: table-cell;
+  padding: 0.1em 0.3em;
 }
 
+h|blockcode {
+  display: block;
+  border: blue 2px solid;
+  -moz-border-radius: 1em;
+  padding: 0.5em;
+  font-family: "Courier New", "Courier", monospace;
+  line-height: 1.2;
+  overflow: auto;
+}
 
+/* Phrases */
+
+h|em {
+  text-decoration: none;
+  color: red;
+  background-color: transparent;
+}
+
+h|abbr[title] {
+  cursor: help;
+}
 

@@ -1,0 +1,39 @@
+/* Blocks */
+
+dl, h\:dl {
+  display: block;
+}
+
+di, h\:di {
+  display: list-item;
+  list-style: disc;
+}
+
+dt, h\:dt {
+  display: block;
+}
+
+dd, h\:dd {
+  display: block;
+  margin-left: 3em;
+}
+
+h\:blockcode {
+  display: block;
+  border: blue 2px solid;
+  padding: 0.5em;
+  font-family: "Courier New", "Courier", monospace;
+  line-height: 1.2;
+}
+
+br {
+  display: block;
+}
+
+/* Phrases */
+
+em, h\:em {
+  text-decoration: none;
+  color: red;
+  background-color: transparent;
+}
