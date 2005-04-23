@@ -51,25 +51,37 @@
           // Common slide style
             var l = document.createElementNS (this.NS_XHTML1, 'link');
             l.setAttribute ('rel', 'stylesheet');
-            l.setAttribute ('href', this.SLIDE_XBL_BASE+'xhtml2.css');
+            l.setAttribute ('href',
+                            /* URI-reference== */
+                              this.SLIDE_XBL_BASE+'xhtml2.css'
+                            /* ==URI-reference */);
             h.appendChild (l);
             
             l = document.createElementNS (this.NS_XHTML1, 'link');
             l.setAttribute ('rel', 'stylesheet');
-            l.setAttribute ('href', this.SLIDE_XBL_BASE+'slide-style.css');
+            l.setAttribute ('href',
+                            /* URI-reference== */
+                              this.SLIDE_XBL_BASE+'slide-style.css'
+                            /* ==URI-reference */);
             h.appendChild (l);
             
           // Slide listing style
             l = document.createElementNS (this.NS_XHTML1, 'link');
             l.setAttribute ('rel', 'stylesheet');
-            l.setAttribute ('href', this.SLIDE_XBL_BASE+'slide-list.css');
+            l.setAttribute ('href',
+                            /* URI-reference== */
+                              this.SLIDE_XBL_BASE+'slide-list.css'
+                            /* ==URI-reference */);
             l.setAttribute ('title', 'Slide List');
             h.appendChild (l);
             
           // Slide showing style
             l = document.createElementNS (this.NS_XHTML1, 'link');
             l.setAttribute ('rel', 'stylesheet alternate');
-            l.setAttribute ('href', this.SLIDE_XBL_BASE+'slide-show.css');
+            l.setAttribute ('href',
+                            /* URI-reference== */
+                              this.SLIDE_XBL_BASE+'slide-show.css'
+                            /* ==URI-reference */);
             l.setAttribute ('title', 'Slideshow');
             h.appendChild (l);
         }
@@ -111,7 +123,8 @@
           if (n < 0) n = slides.length + n;	// -1 = slides.length-1
           else if (slides.length <= n) n = 0;
           for (var i = 0; i < slides.length; i++) {
-            slides[i].setAttribute ('-isCurrentSlide', (i == n ? 'yes' : 'no'));
+            slides[i].setAttributeNS (this.NS_SLIDE, 'isCurrentSlide',
+                                      (i == n ? 'yes' : 'no'));
           }
           this.currentSlideIndex = n;
         ]]></body>
@@ -187,7 +200,7 @@
   </binding>
   <binding id="seqNo">
     <implementation>
-      <field name="seqNo">[]</field>
+      <field name="NS_SLIDE">'urn:x-suika-fam-cx:markup:slide:1'</field>
       <constructor type="application/x-javascript" xml:space="preserve"><![CDATA[
         var t;
         var seqName = this.getAttribute ('name');
@@ -200,7 +213,7 @@
         } else {
           t[seqName] = 1;
         }
-        this.setAttribute ('-seq-no', t[seqName]);
+        this.setAttributeNS (this.NS_SLIDE, 's:seq-no', t[seqName]);
       ]]></constructor>
     </implementation>
   </binding>

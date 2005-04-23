@@ -1,9 +1,18 @@
 @charset 'iso-2022-jp';
 @namespace h 'http://www.w3.org/2002/06/xhtml2';
 
-/* Meta informations */
+/* Meta information */
 h|head {
-	display: none;
+  display: block;
+  max-width: 0;
+  max-height: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+h|title {
+  display: inline;
+  -moz-binding: url(http://suika.fam.cx/www/style/ui/title.xbl#title);
 }
 
 /* Headings */

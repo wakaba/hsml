@@ -2,16 +2,171 @@
 
 /* Slideset (root element) */
 slides {
-	behavior: url(../implementation/slide-style-winie-slides.htc);
+  display: expression(function (element) {
+    element.style.display = 'block';
+    element.style.margin = '0';
+    element.style.borderStyle = 'none';
+    element.style.padding = '0';
+    
+    runtimeStyle.display = 'block';
+  } (this));
+}
+
+title {
+  display: expression(function (element) {
+    window.document.title = element.innerText;
+    runtimeStyle.display = 'none';
+  } (this));
 }
 
 /* A slide */
 slide {
-	behavior: url(../implementation/xhtml2-winie.htc)
-	          url(../implementation/slide-style-winie-slide.htc);
+  display: expression(function (element) {
+
+    /* h|h */
+    var el = element.getElementsByTagName ('h');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'block';
+      el[i].style.fontWeight = 'bolder';
+      el[i].style.marginBottom = '0.5em';
+      el[i].style.fontFamily = '"MS P Gothic", "Arial", sans-serif';
+      el[i].style.lineHeight = '1.1';
+    }
+
+    /* h|ul */
+    var el = element.getElementsByTagName ('ul');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'block';
+      el[i].style.marginTop = '1em';
+      el[i].style.marginBottom = '1em';
+    }
+    
+    /* h|ol */
+    var el = element.getElementsByTagName ('ol');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'block';
+      el[i].style.marginTop = '1em';
+      el[i].style.marginBottom = '1em';
+    
+      var li = el[i].childNodes;
+      for (var i = 0; i < li.length; i++) {
+        if (li[i].tagName == 'li') {
+          li[i].style.display = 'block';
+          li[i].style.listStyle = 'none';
+          li[i].style.textAlign = 'center';
+          
+          if (i > 0) {
+            var beforeNode = element.document.createElement ('div');
+            beforeNode.appendChild (element.document.createTextNode ('↓'));
+            beforeNode.style.display = 'block';
+            beforeNode.style.textAlign = 'center';
+            
+            if (li[i].childNodes.length) {
+              li[i].insertBefore (beforeNode, li[i].childNodes[0]);
+            } else {
+              li[i].appendChild (beforeNode);
+            }
+          }
+        }
+      }
+    }
+    
+    /* h|nl */
+    var el = element.getElementsByTagName ('nl');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'block';
+      el[i].style.marginTop = '1em';
+      el[i].style.marginBottom = '1em';
+      el[i].style.listStyleType = 'disc';
+    }
+    
+    /* h|li */
+    var el = element.getElementsByTagName ('li');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'list-item';
+      el[i].style.marginLeft = '1em';
+    }
+  
+    /* h|l */
+    var el = element.getElementsByTagName ('l');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'block';
+    }
+    
+    /* h|table */
+    var el = element.getElementsByTagName ('table');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'block';
+      el[i].style.textAlign = 'center';
+    }
+
+    /* h|tbody */
+    var el = element.getElementsByTagName ('tbody');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'block';
+    }
+
+    /* h|tr */
+    var el = element.getElementsByTagName ('tr');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'block';
+    }
+
+    /* h|th */
+    var el = element.getElementsByTagName ('td');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'inline-block';
+    }
+
+    /* h|td */
+    var el = element.getElementsByTagName ('td');
+    for (var i = 0; i < el.length; i++) {
+      el[i].style.display = 'inline-block';
+    }
+
+    /* s|slide */
+    element.style.display = 'block';
+    element.style.padding = '1.5em';
+    element.style.overflow = 'auto';
+    element.style.lineHeight = '2.1';
+    element.style.fontFamily = 'sans-serif';
+    
+    // s|slide h|h:first-child
+    var el = element.getElementsByTagName ('h')[0];
+    el.style.textAlign = 'center';
+    el.style.fontSize = '200%';
+
+    // s|slide[role~="cover"] h|h:first-child
+    if (getAttribute ('role') == 'cover') {
+      var title = element.getElementsByTagName ('h')[0];
+      title.style.textAlign = 'center';
+      title.style.marginTop = '25%';
+      title.style.marginBottom = '25%';
+      title.style.fontSize = '270%';
+    }
+
+    runtimeStyle.display = 'block';
+  } (this));
 }
 
 /* s|seqNo */
 seqNo {
-	behavior: url(../implementation/slide-style-winie-seqNo.htc);
+  behavior: expression(function (element) {
+    if (!element.document.__HSML_IMPLIE__)
+      element.document.__HSML_IMPLIE__ = new Array ();
+    if (!element.document.__HSML_IMPLIE__.seqNo)
+      element.document.__HSML_IMPLIE__.seqNo = new Array ();
+
+    element.appendChild (document.createTextNode (' (' +
+                         incrementSeqNumber (element.getAttribute ('name')) +
+                         ')'));
+
+    function incrementSeqNumber (name) {
+      if (isNaN (element.document.__HSML_IMPLIE__.seqNo[name]))
+        element.document.__HSML_IMPLIE__.seqNo[name] = 0;
+      return ++element.document.__HSML_IMPLIE__.seqNo[name];
+    }
+
+    runtimeStyle.behavior = 'none';
+  } (this));
 }

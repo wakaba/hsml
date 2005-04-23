@@ -75,9 +75,9 @@ s|seqNo[name] {
 	-moz-binding: url(slide-xbl.xml#seqNo);
 }
 s|seqNo[name]:before {
-	content: "(" attr(-seq-no) ")";
+	content: "(" attr(s|seq-no) ")";
 }
-s|seqNo:not([-seq-no]):before {
+s|seqNo:not([s|seq-no]):before {
 	content: "(n)";
 }
 s|ref[to] {
