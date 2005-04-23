@@ -1,7 +1,8 @@
 @namespace s 'urn:x-suika-fam-cx:markup:slide:1';
 @namespace h1 'http://www.w3.org/1999/xhtml';
 @namespace h 'http://www.w3.org/2002/06/xhtml2';
-
+@namespace sd 'http://suika.fam.cx/~wakaba/archive/2005/3/common-class#';
+@namespace dc 'http://purl.org/dc/elements/1.1/';
 @namespace l 'http://suika.fam.cx/~wakaba/-temp/2003/05/01/layout-table';
 l|layout {
 	display: table;
@@ -65,3 +66,45 @@ h|li h|l {
 	text-align: center;
 	color: red;
 }
+
+/* Weak */
+sd|weak {
+  font-size: smaller;
+  color: gray;
+}
+
+h|li > sd|weak {
+  display: block;
+  text-align: right;
+}
+
+sd\:weak {
+  font-size: smaller;
+  color: gray;
+  display: block;
+  text-align: right;
+}
+
+/* Cover page */
+
+slide {
+  text-align: expression(function (element) {
+    if (element.getAttribute ('role') == 'cover') {
+      var h = element.getElementsByTagName ('h')[0];
+      h.style.marginTop = '0';
+      h.style.marginBottom = '0';
+    }
+    runtimeStyle.textAlign = 'left';
+  } (this));
+}
+
+dc|date {
+  display: block;
+  text-align: right;
+}
+dc\:date {
+  display: block;
+  text-align: right;
+}
+
+

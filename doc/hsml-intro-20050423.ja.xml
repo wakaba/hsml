@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="iso-2022-jp"?>
+<?xml-stylesheet href="../implementation/hsml-core.css" type="text/css"?>
+<?xml-stylesheet href="hsml-intro-style.css" type="text/css"?>
+<!DOCTYPE slides [
+  <!ENTITY h "http://www.w3.org/2002/06/xhtml2">
+  <!ENTITY s "urn:x-suika-fam-cx:markup:slide:1">
+  <!ATTLIST slide id ID #IMPLIED>
+  <!ATTLIST fig id ID #IMPLIED>
+]>
+<slides xmlns="&s;" xmlns:s="&s;"
+        xmlns:h1="http://www.w3.org/1999/xhtml"
+        xmlns:h="&h;"
+        xmlns:sd="http://suika.fam.cx/~wakaba/archive/2005/3/common-class#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xml:lang="ja">
+<h:head>
+  <h:title><abbr xml:lang="en" title="Hyperslide Markup Language"
+    xmlns="&h;">HSML</abbr> の紹介</h:title>
+</h:head>
+
+<slide role="cover">
+<h:h xml:lang="en"><h:abbr>HSML</h:abbr> (Hyperslide Markup Language)</h:h>
+<dc:date>2005年4月</dc:date>
+</slide>
+
+<slide>
+<h:h><abbr xml:lang="en" title="Hyperslide Markup Language"
+    xmlns="&h;">HSML</abbr> とは何か</h:h>
+<ul xmlns="&h;">
+<li>発表用スライドをマーク付けする言語</li>
+<li><span xml:lang="en">Web</span> ブラウザの全画面表示による上映が主目的
+	<sd:weak>(他の使い方も可能)</sd:weak></li>
+</ul>
+</slide>
+
+<slide>
+<h:h><abbr xml:lang="en" title="Hyperslide Markup Language"
+    xmlns="&h;">HSML</abbr> 文書の例</h:h>
+
+<h:blockcode xml:space="preserve"><![CDATA[<slide>
+<h:h><h:abbr xml:lang="en" title="Hyperslide Markup Language">HSML</h:abbr>
+とは何か</h:h>
+<ul xmlns="&h;">
+<li>発表用スライドをマーク付けする言語</li>
+<li>Web ブラウザの全画面表示による上映が主目的
+	<sd:weak>(他の使い方も可能)</sd:weak></li>
+</ul>
+</slide>]]></h:blockcode>
+</slide>
+
+<slide>
+<h:h><abbr xml:lang="en" title="Hyperslide Markup Language"
+    xmlns="&h;">HSML</abbr> の特徴</h:h>
+
+<dl xmlns="&h;">
+<di><dt>単純</dt> 
+	<dd><abbr xml:lang="en" title="Hypertext Markup Language">HTML</abbr> 
+	に毛が生えた程度</dd></di>
+<di><dt>高機能</dt>
+	<dd><span xml:lang="en">Web</span> ブラウザでできることは何でも可能</dd></di>
+<di><dt>無料</dt>
+	<dd>必要なもの: エディタ, ブラウザ, いくらかの知識</dd></di>
+</dl>
+</slide>
+
+<slide>
+<h:h><abbr xml:lang="en" title="Hyperslide Markup Language"
+    xmlns="&h;">HSML</abbr> スライドの構成</h:h>
+
+<dl xmlns="&h;">
+<di><dt>スライド本体</dt>
+	<dd>スライドと表示する内容</dd>
+	<dd>発表メモなどを含めることも可能</dd>
+	<dd>構造は <abbr xml:lang="en" title="Extensible Markup Language"
+	>XML</abbr> で記述</dd></di>
+<di><dt>スタイル・シート</dt>
+	<dd>スライドの表示方法や動作</dd>
+	<dd><abbr xml:lang="en" title="Cascading Style Sheets">CSS</abbr>
+	や <span xml:lang="en">JavaScript</span> で記述</dd></di>
+<di><dt>補助資源</dt>
+	<dd>画像など (必要に応じて)</dd></di>
+</dl>
+</slide>
+
+<slide>
+<h:h>スライド本体</h:h>
+
+<ul xmlns="&h;">
+<li>スライド構成・構造と本文を <abbr xml:lang="en"
+	 title="Extensible Markup Language">XML</abbr> で記述</li>
+<li><abbr xml:lang="en"
+         title="Extensible Markup Language">XML</abbr> 名前空間を使い、
+	既存の語彙やスタイル・シートを流用可能</li>
+<li>豊富な <abbr xml:lang="en"
+         title="Extensible Markup Language">XML</abbr>
+	対応ソフトウェア (<span xml:lang="en">Web</span> ブラウザも) 
+	を流用可能</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>使用する語彙の例</h:h>
+
+<table xmlns="&h;">
+<tbody>
+<tr><th scope="row"><abbr xml:lang="en" title="Hyperslide Markup Language"
+    xmlns="&h;">HSML</abbr> 1</th>
+	<td>スライドの構成, 関係 (<abbr xml:lang="en"
+	title="Example">ex.</abbr> 連番)</td></tr>
+<tr><th scope="row"><abbr xml:lang="en"
+	 title="Extensible Hypertext Markup Language">XHTML</abbr> 2</th>
+	<td>スライド内の構造 (<abbr xml:lang="en"
+	title="Example">ex.</abbr> リスト, 表, 強調)</td></tr>
+<tr><th scope="row" xml:lang="en">MathML</th>
+	<td>数式</td></tr>
+<tr><th scope="row"><abbr xml:lang="en" title="Scalable Vector Graphics"
+	>SVG</abbr></th>
+	<td>図</td></tr>
+</tbody>
+</table>
+</slide>
+
+<slide>
+<h:h>スタイル・シート</h:h>
+
+<ul xmlns="&h;">
+<li>スライドの構造を表示に反映させる方法の記述</li>
+<li><abbr xml:lang="en" title="Cascading Style Sheets">CSS</abbr>
+	を使用</li>
+<li>補助的に <abbr xml:lang="en" title="XML Binding Language">XBL</abbr> 1,
+	<abbr xml:lang="en" title="HTML Components">HTC</abbr>,
+	<span xml:lang="en">JavaScript</span> を使用</li>
+</ul>
+</slide>
+
+<slide>
+<h:h><abbr xml:lang="en" title="Hyperslide Markup Language"
+    xmlns="&h;">HSML</abbr> の実装</h:h>
+
+<ul xmlns="&h;">
+<label><abbr xml:lang="en" title="Hyperslide Markup Language"
+    xmlns="&h;">HSML</abbr> の実装に必要なもの</label>
+<li><abbr xml:lang="en" title="Extensible Markup Language">XML</abbr>,
+<abbr xml:lang="en" title="Cascading Style Sheets">CSS</abbr>,
+<span xml:lang="en">JavaScript</span> のエンジン</li>
+<li><span xml:lang="en">User interface</span> 
+(スライド移動など) の実装</li>
+</ul>
+</slide>
+
+<slide>
+<h:h><span xml:lang="en">Gecko</span> + 
+<abbr xml:lang="en" title="Cascading Style Sheets">CSS</abbr> +
+<span xml:lang="en">JavaScript</span> による実装</h:h>
+
+<ul xmlns="&h;">
+<li><span xml:lang="en">Gecko</span>
+(<span xml:lang="en">Mozilla Firefox</span> など)</li>
+<li><abbr xml:lang="en" title="Hyperslide Markup Language"
+    xmlns="&h;">HSML</abbr> 文書のスタイル・シートで実装が入った
+<abbr xml:lang="en" title="XML Binding Language">XBL</abbr> 1
+文書を指定
+	<sd:weak>(本当は美しくないからよくない)</sd:weak></li>
+<li><abbr xml:lang="en" title="XML Binding Language">XBL</abbr> 1
+文書内にはスライド移動操作などを実装した
+<span xml:lang="en">JavaScript</span> のコード</li>
+</ul>
+</slide>
+
+<slide>
+<h:h><span xml:lang="en">Trident</span> + 
+<abbr xml:lang="en" title="Cascading Style Sheets">CSS</abbr> +
+<span xml:lang="en">JScript</span> による実装</h:h>
+
+<ul xmlns="&h;">
+<li><span xml:lang="en">Trident</span>
+(<abbr xml:lang="en" title="Internet Explorer for Windows">WinIE</abbr>)</li>
+<li><abbr xml:lang="en" title="Hyperslide Markup Language"
+    xmlns="&h;">HSML</abbr> 文書のスタイル・シートにスライド移動操作などを実装した
+<span xml:lang="en">JavaScript</span> のコード
+	<sd:weak>(本当は美しくないから良くない)</sd:weak></li>
+<li>以前は <abbr xml:lang="en" title="HTML Components">HTC</abbr> も使用
+	<sd:weak>(互換性の問題から使用中止)</sd:weak></li>
+</ul>
+</slide>
+
+<slide>
+<h:h><abbr xml:lang="en" title="XML‐based User Interface Language">XUL</abbr>
+による実装</h:h>
+
+<ul xmlns="&h;">
+<li>独立したプログラムとして使用可能</li>
+<li>編集機能も実装 (?)</li>
+<li>まだ<em>構想</em>段階</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>課題</h:h>
+<ul xmlns="&h;">
+<li>表現力の向上</li>
+<li>実装の改善</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>表現力の向上</h:h>
+<ul xmlns="&h;">
+<li>話の流れに沿って項目を出したり消したり</li>
+<li><nl><label>スライド間のリンク・順序</label>
+	<li>スライドの参照</li>
+	<li>重複スライド</li>
+	<li>流れの分岐</li>
+	<li><abbr xml:lang="en" title="XML Pointing Language"
+	>XPointer</abbr></li>
+</nl></li>
+<li>スタイル・ライブラリ (<q>テーマ</q>)</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>実装の改善</h:h>
+<ul xmlns="&h;">
+<li>一覧表示・印刷</li>
+<li>発表原稿・発表メモ</li>
+<li>編集</li>
+<li>必要ファイル一式のパッケージ化</li>
+<li><abbr xml:lang="en" title="Hypertext Markup Language">HTML</abbr> 
+	版の生成</li>
+<li>検索エンジン Namazu への対応</li>
+</ul>
+</slide>
+
+<slide>
+<h:h>大きな障害 : <abbr xml:lang="en" title="Internet Explorer for Windows"
+>WinIE</abbr></h:h>
+
+<ul xmlns="&h;">
+<li>よく使われているにも関わらず、極めてお粗末</li>
+<li><ol><li>全体の技術レベルが低下</li>
+        <li>魅力的なスライドが作れない</li></ol></li>
+<li>対策 : <span xml:lang="en">JavaScript style sheets</span> 
+	<aa xmlns="http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#"
+	>:)</aa>
+	<sd:weak>(<abbr xml:lang="en" title="JavaScript Style Sheets">JSSS</abbr>
+	は <span xml:lang="en">Classic Mozilla</span> の捨てられた技術。
+	<abbr xml:lang="en" title="Internet Explorer for Windows"
+	>WinIE</abbr> 救済にそれと似た方法がある程度は使える)</sd:weak></li>
+</ul>
+</slide>
+
+<slide>
+<h:h>まとめ</h:h>
+<ul xmlns="&h;">
+<li xml:lang="en"><abbr>HSML</abbr> &#x2014; Hyperslide Markup Language</li>
+<li>簡単に発表用スライドを作成</li>
+<li>既存の色々を流用</li>
+<li>一応実装もある</li>
+<li><abbr xml:lang="en" title="Internet Explorer for Windows"
+        >WinIE</abbr> には泣かされる</li>
+</ul>
+</slide>
+
+</slides>
