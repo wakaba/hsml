@@ -18,6 +18,24 @@ slides {
     var head = element.getElementsByTagName ('head')[0];
     head.style.display = 'none';
 
+    var pageNumbers = document.createElement ('pageNumbers');
+    var currentPageNumber = document.createElement ('currentPageNumber');
+    currentPageNumber.innerText = '1';
+    pageNumbers.appendChild (currentPageNumber);
+    var allPageNumber = document.createElement ('allPageNumber');
+    pageNumbers.appendChild (allPageNumber);
+    pageNumbers.appendChild (allPageNumber);
+    setTimeout (function () {
+      pageNumbers.insertBefore (document.createTextNode (' / '), allPageNumber);
+      allPageNumber.innerText = document.getElementsByTagName ('slide').length;
+    }, 3000);
+
+    pageNumbers.style.display = 'block';
+    pageNumbers.style.position = 'absolute';
+    pageNumbers.style.bottom = '0.4em';
+    pageNumbers.style.right = '0.4em';
+    setTimeout (function () {element.appendChild (pageNumbers)}, 1000);
+
     document.onkeydown = function () {
       var slide = getSlideList ();
       if (event.keyCode == 13 || event.keyCode == 39) {
@@ -46,6 +64,7 @@ slides {
       for (var i = 0; i < slide.length; i++) {
         slide[i].runtimeStyle.display = (i == n) ? 'block' : 'none';
       }
+      currentPageNumber.innerText = n + 1;
     }
 
     function getSlideList () {

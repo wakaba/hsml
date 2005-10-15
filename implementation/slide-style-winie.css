@@ -141,7 +141,7 @@ slide {
       var title = element.getElementsByTagName ('h')[0];
       title.style.textAlign = 'center';
       title.style.marginTop = '25%';
-      title.style.marginBottom = '25%';
+//      title.style.marginBottom = '25%';
       title.style.fontSize = '270%';
     }
 
