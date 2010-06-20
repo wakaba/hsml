@@ -1,0 +1,16 @@
+AddType text/html .html
+AddCharset iso-2022-jp .html
+
+AddType application/xhtml+xml .xhtml
+AddCharset iso-2022-jp .xhtml
+
+AddType application/xml .xml
+AddCharset iso-2022-jp .xml
+
+AddType text/css .css
+AddCharset iso-2022-jp .css
+
+AddType application/xml-dtd .dtd .mod
+AddCharset iso-2022-jp .dtd .mod
+
+## License: Public Domain.
