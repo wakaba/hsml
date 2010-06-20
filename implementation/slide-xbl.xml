@@ -84,7 +84,6 @@
                             /* ==URI-reference */);
             l.setAttribute ('title', 'Slideshow');
             h.appendChild (l);
-        }
       ]]></constructor>
     </implementation>
   </binding>
