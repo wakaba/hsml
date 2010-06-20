@@ -1,0 +1,17 @@
+2005-10-15  Wakaba  <wakaba@suika.fam.cx>
+
+	* slide-show-winie.css: Page number auto insertion added.
+
+2005-04-23  Wakaba  <wakaba@suika.fam.cx>
+
+	* slide-show-winie.css: Opens next slide by double-click (not
+	single-click).
+
+	* slide-xbl.xml: Makes slideshow default (rather than slidelist),
+	since Firefox 1.0 has no control for style sheets without extension
+	package.
+	
+	* ChangeLog: New file.
+
+	* *.htc: Merged into *-winie.css as "expression".
+

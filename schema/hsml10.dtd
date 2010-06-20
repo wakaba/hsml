@@ -1,0 +1,218 @@
+<!-- ....................................................................... -->
+<!-- HSML 1.0 DTD ......................................................... -->
+<!-- file: hsml10.dtd
+-->
+
+<!-- HSML 1.0 DTD
+
+     This is HSML - Hyper Slide Markup Language, Version 1.0.
+
+     Copyright 2004 Wakaba <w@suika.fam.cx>, All Rights Reserved.
+
+     Permission to use, copy, modify and distribute this DTD and its
+     accompanying documentation for any purpose and without fee is hereby
+     granted in perpetuity, provided that the above copyright notice and
+     this paragraph appear in all copies.  The copyright holders make no
+     representation about the suitability of the DTD for any purpose.
+
+     It is provided "as is" without expressed or implied warranty.
+
+       Revision: 2004-11-08T10:28:21+00:00
+
+-->
+<!-- This is the driver file for the HSML 1.0 DTD.
+
+     This DTD is identified by the SYSTEM identifier:
+
+     SYSTEM "http://suika.fam.cx/~wakaba/-temp/slide/schema/hsml10.dtd"
+-->
+
+<!-- Switchers to include/ignore each vocabulary -->
+<!ENTITY % hsml1.module "INCLUDE">
+<!ENTITY % xhtml2.module "INCLUDE">
+<!ENTITY % XHTML.module "IGNORE">
+
+<!-- Namespace names -->
+<!ENTITY % hsml1.xmlns "urn:x-suika-fam-cx:markup:slide:1">
+<!ENTITY % xhtml2.xmlns "http://www.w3.org/2002/06/xhtml2">
+<!ENTITY % XHTML.xmlns "http://www.w3.org/1999/xhtml">
+
+<!-- Base URIs for the relavant DTD modules -->
+<!ENTITY % hsml1.sysid.base "module/">
+<!ENTITY % xhtml2.sysid.base "data:,xhtml2-dtd-module-">
+<!ENTITY % XHTML.sysid.base "http://www.w3.org/TR/xhtml-modularization/DTD/">
+
+<!-- Namespace prefix -->
+<!ENTITY % NS.prefixed "INCLUDE">
+<!ENTITY % hsml1.prefix "s">
+<!ENTITY % hsml1.prefixed "IGNORE">
+<!ENTITY % xhtml2.prefix "h">
+<!ENTITY % xhtml2.prefixed "INCLUDE">
+<!ENTITY % XHTML.prefix "h1">
+<!ENTITY % XHTML.prefixed "INCLUDE">
+
+<!-- a URI reference -->
+<!ENTITY % URI.datatype "CDATA">
+
+<!-- Placefolders for foreign namespace declarations -->
+<!ENTITY % hsml1.xmlns.extra.attrib "">
+<!ENTITY % xhtml2.xmlns.extra.attrib "">
+<!ENTITY % XHTML.xmlns.extra.attrib "">
+
+<!-- Namespace declarations -->
+<![%hsml1.module;[
+<![%hsml1.prefixed;[
+<!ENTITY % hsml1.xmlns.decl.attrib
+	"xmlns:%hsml1.prefix;	%URI.datatype;	#FIXED '%hsml1.xmlns;'">
+]]>
+<!ENTITY % hsml1.xmlns.decl.attrib
+	"xmlns	%URI.datatype;	#FIXED '%hsml1.xmlns;'">
+]]>
+<!ENTITY % hsml1.xmlns.decl.attrib "">
+
+<![%xhtml2.module;[
+<![%xhtml2.prefixed;[
+<!ENTITY % xhtml2.xmlns.decl.attrib
+	"xmlns:%xhtml2.prefix;	%URI.datatype;	#FIXED '%xhtml2.xmlns;'">
+]]>
+<!ENTITY % xhtml2.xmlns.decl.attrib
+	"xmlns	%URI.datatype;	#FIXED '%xhtml2.xmlns;'">
+]]>
+<!ENTITY % xhtml2.xmlns.decl.attrib "">
+
+<![%XHTML.module;[
+<![%XHTML.prefixed;[
+<!ENTITY % XHTML.xmlns.decl.attrib
+	"xmlns:%XHTML.prefix;	%URI.datatype;	#FIXED '%XHTML.xmlns;'">
+]]>
+<!ENTITY % XHTML.xmlns.decl.attrib
+	"xmlns	%URI.datatype;	#FIXED '%XHTML.xmlns;'">
+]]>
+<!ENTITY % XHTML.xmlns.decl.attrib "">
+
+<!-- Declare a parameter entity %XSI.prefix as a prefix to use for
+     XML Schema Instance attributes. -->
+<!ENTITY % XSI.prefix "xsi">
+
+<!ENTITY % XSI.pfx "%XSI.prefix;:">
+
+<!ENTITY % XSI.xmlns "http://www.w3.org/2001/XMLSchema-instance">
+
+<!-- Declare a parameter entity %XSI.xmlns.attrib as support for
+     the schemaLocation attribute. -->
+<!ENTITY % XSI.xmlns.attrib
+	"xmlns:%XSI.prefix;	%URI.datatype;	#FIXED '%XSI.xmlns;'">
+
+<!ENTITY % NS.decl.attrib
+	"%hsml1.xmlns.decl.attrib;
+	%xhtml2.xmlns.decl.attrib;
+	%XHTML.xmlns.decl.attrib;
+	%hsml1.xmlns.extra.attrib;
+	%xhtml2.xmlns.extra.attrib;
+	%XHTML.xmlns.extra.attrib;
+	%XSI.xmlns.attrib;">
+
+<!ENTITY % hsml1.xmlns.attrib "%NS.decl.attrib;">
+<!ENTITY % xhtml2.xmlns.attrib "%NS.decl.attrib;">
+<!ENTITY % XHTML.xmlns.attrib "%NS.decl.attrib;">
+
+
+<!-- QName Module -->
+<![%hsml1.module;[
+<!ENTITY % hsml1.qname.module "INCLUDE">
+<![%hsml1.qname.module;[
+<!ENTITY % hsml1.qname.decl
+	'SYSTEM "%hsml1.sysid.base;hsml1-qname.mod"'>
+<!ENTITY % hsml1.qname.mod %hsml1.qname.decl;>
+%hsml1.qname.mod;]]>
+]]>
+
+<!-- QName Module -->
+<![%XHTML.module;[
+<!ENTITY % XHTML.qname.module "INCLUDE">
+<![%XHTML.qname.module;[
+<!ENTITY % XHTML.qname.decl
+	'PUBLIC "-//W3C//ENTITIES XHTML Qualified Names 1.0//EN"
+	       "%XHTML.sysid.base;xhtml-qname-1.mod"'>
+<!ENTITY % XHTML.qname.mod %XHTML.qname.decl;>
+%XHTML.qname.mod;]]>
+]]>
+
+<!-- Datatypes Module -->
+<![%hsml1.module;[
+<!ENTITY % hsml1.datatype.module "INCLUDE">
+<![%hsml1.datatype.module;[
+<!ENTITY % hsml1.datatype.decl
+	'SYSTEM "%hsml1.sysid.base;hsml1-datatype.mod"'>
+<!ENTITY % hsml1.datatype.mod %hsml1.datatype.decl;>
+%hsml1.datatype.mod;]]>
+]]>
+
+<!-- Datatypes Module -->
+<![%XHTML.module;[
+<!ENTITY % XHTML.datatype.module "INCLUDE">
+<![%XHTML.datatype.module;[
+<!ENTITY % XHTML.datatype.decl
+	'PUBLIC "-//W3C//ENTITIES XHTML Datatypes 1.0//EN"
+	       "%XHTML.sysid.base;xhtml-datatypes-1.mod"'>
+<!ENTITY % XHTML.datatype.mod %XHTML.datatype.decl;>
+%XHTML.datatype.mod;]]>
+]]>
+
+<!-- Common Attributes Module -->
+<![%hsml1.module;[
+<!ENTITY % hsml1.attribs.module "INCLUDE">
+<![%hsml1.attribs.module;[
+<!ENTITY % hsml1.attribs.decl
+	'SYSTEM "%hsml1.sysid.base;hsml1-attribs.mod"'>
+<!ENTITY % hsml1.attribs.mod %hsml1.attribs.decl;>
+%hsml1.attribs.mod;]]>
+]]>
+
+<!-- Common Attributes Module -->
+<![%XHTML.module;[
+<!ENTITY % XHTML.attribs.module "INCLUDE">
+<![%XHTML.attribs.module;[
+<!ENTITY % hsml10.XHTML.bidi "INCLUDE">
+<!ENTITY % XHTML.common.extra.attrib
+	"xml:space	(default|preserve)	#IMPLIED">
+
+<!ENTITY % XHTML.attribs.decl
+	'PUBLIC "-//W3C//ENTITIES XHTML Common Attributes 1.0//EN"
+	       "%XHTML.sysid.base;xhtml-attribs-1.mod"'>
+<!ENTITY % XHTML.attribs.mod %XHTML.attribs.decl;>
+%XHTML.attribs.mod;]]>
+]]>
+
+<!-- Inline module -->
+<![%hsml1.module;[
+<!ENTITY % hsml1.inline.module "INCLUDE">
+<![%hsml1.inline.module;[
+<!ENTITY % hsml1.inline.decl
+	'SYSTEM "%hsml1.sysid.base;hsml1-inline.mod"'>
+<!ENTITY % hsml1.inline.mod %hsml1.inline.decl;>
+%hsml1.inline.mod;]]>
+]]>
+
+<!-- Figure module -->
+<![%hsml1.module;[
+<!ENTITY % hsml1.figure.module "INCLUDE">
+<![%hsml1.figure.module;[
+<!ENTITY % hsml1.figure.decl
+	'SYSTEM "%hsml1.sysid.base;hsml1-figure.mod"'>
+<!ENTITY % hsml1.figure.mod %hsml1.figure.decl;>
+%hsml1.figure.mod;]]>
+]]>
+
+<!-- Slide structure module -->
+<![%hsml1.module;[
+<!ENTITY % hsml1.struct.module "INCLUDE">
+<![%hsml1.struct.module;[
+<!ENTITY % hsml1.struct.decl
+	'SYSTEM "%hsml1.sysid.base;hsml1-struct.mod"'>
+<!ENTITY % hsml1.struct.mod %hsml1.struct.decl;>
+%hsml1.struct.mod;]]>
+]]>
+
+
+<!-- end of hsml10.dtd -->
