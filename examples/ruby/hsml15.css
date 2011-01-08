@@ -1,0 +1,516 @@
+@charset "iso-2022-jp";
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace x2 "http://www.w3.org/2002/06/xhtml2/";
+@namespace s "urn:x-suika-fam-cx:markup:slide:1";
+@namespace p "http://suika.fam.cx/~wakaba/2005/10/iop-slide#";
+@namespace script "http://suika.fam.cx/~wakaba/archive/2004/script#";
+
+/* --- Base Font Size --- */
+
+@media projection and (max-device-width:640px) { html { font-size: 16px; }}
+@media projection and (min-device-width:640px) { html { font-size: 20px; }}
+@media projection and (min-device-width:800px) { html { font-size: 24px; }}
+@media projection and (min-device-width:1024px) { html { font-size: 34px; }}
+@media projection and (min-device-width:1280px) { html { font-size: 40px; }}
+@media projection and (min-device-width:1600px) { html { font-size: 50px; }}
+
+/* --- Section-level Elements --- */
+
+html {
+  display: block;
+  margin: 0;
+  border-style: none;
+  padding: 0;
+  line-height: 2.0;
+  background-image: url(kn-cloth02.png);
+  color: black;
+  counter-reset: example fig;
+}
+
+@media print {
+html {
+  background-image: none;
+}
+}
+
+html:after {
+  display: block;
+  position: absolute;
+  right: 2em;
+  content: counter(slide);
+  font-family: "Courier New", monospace;
+  font-weight: normal;
+  font-size: 100%;
+}
+
+@media projection {
+html:after {
+  content: counter(slide);
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  right: 0.5em;
+}
+}
+
+head {
+  display: none;
+}
+
+body {
+  margin: 0;
+  border-style: none;
+  padding: 0;
+}
+
+s|slide {
+  display: block;
+  padding: 1em 1em 0 1em;
+  clear: both;
+}
+
+@media projection {
+s|slide {
+  min-height: 50%;
+  max-height: 90%;
+  overflow: hidden;
+  page-break-after: always;
+}
+}
+
+s|slide:after {
+  display: block;
+  position: absolute;
+  right: 3em;
+  content: counter(slide);
+  counter-increment: slide;
+  font-family: "Courier New", monospace;
+  font-weight: bolder;
+  font-size: 100%;
+}
+
+@media projection {
+s|slide:after {
+  position: absolute;
+  top: 90%;
+  right: 2em;
+}
+}
+
+/* -- Header Elements -- */
+
+header {
+  display: block;
+  margin: 0 0 0.5em 0;
+  border-style: none;
+  padding: 0.5em;
+  text-align: center;
+  background-image: url(p-spring-back.png);
+}
+
+@media print {
+header {
+  background-image: none;
+}
+}
+
+header:before {
+  display: none;
+}
+
+header:after {
+  display: none;
+}
+
+*|slide[role="cover"] > header {
+  padding-top: 3em;
+  padding-bottom: 2.5em;
+}
+
+h1, h2, h3 {
+  display: block;
+  margin: 0;
+  border-style: none;
+  padding: 0;
+  font-family: "B#M#S (B B#P%4%7%C%/ (B", sans-serif;
+  font-size: 160%;
+  font-weight: bolder;
+  line-height: 1.2;
+}
+
+*|slide[role="cover"] h1 {
+  font-size: 200%;
+}
+
+h1 + h2:lang(en),
+h2 + h3:lang(en) {
+  font-family: "Times New Roman", serif;
+  font-size: 90%;
+  font-weight: normal;
+  font-style: italic;
+}
+
+*|slide[role="cover"] h1 + h2:lang(en) {
+  font-size: 130%;
+}
+
+p|src {
+  display: block;
+  position: absolute;
+  right: 3em;
+  font-size: 80%;
+  line-height: 1.0;
+}
+
+*|slide[role="cover"] p|src {
+  position: relative;
+  top: 1em;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 100%;
+  text-align: center;
+}
+
+p|section {
+  margin-right: 0.5em;
+}
+
+/* --- Semi-section-level Elements --- */
+
+p|fig {
+  display: block;
+  margin: 1em;
+  text-align: center;
+  counter-increment: fig;
+}
+
+p|fig[position~="center"] {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p|fig[position~="left"] {
+  float: left;
+}
+
+p|fig[position~="right"] {
+  float: right;
+}
+
+p|fig[position~="middle"] {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+p|fig[position~="top"] {
+  margin-bottom: 0;
+}
+
+*|fig[position~="top"] + ul {
+  margin-top: 0;
+}
+
+p|fig[position~="bottom"] {
+}
+
+/* --- Paragraph-level Elements --- */
+
+p {
+  display: block;
+  margin: 1em 2em;
+  border-style: none;
+  padding: 0;
+  text-indent: 0;
+}
+
+address {
+  display: block;
+  margin: 1em 1em 1em auto;
+  width: 15em;
+  border-style: none;
+  padding: 0;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+ul, dl {
+  display: block;
+  margin: 1em 2em;
+  border-style: none;
+  padding: 0;
+}
+
+dd > ul, li > ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+li, dt {
+  display: list-item;
+  margin: 0;
+  border-style: none;
+  padding: 0 0 0 0.6em;
+  list-style-type: disc;
+}
+
+li li, dd li {
+  list-style-type: square;
+}
+
+li.so-that, li.note {
+  display: block;
+  list-style-type: none;
+  text-indent: -1.5em;
+}
+
+li.so-that:before {
+  content: "B"* (B ";
+}
+
+li.note:before {
+  content: "B"((B ";
+}
+
+li.next {
+  color: gray;
+}
+
+p|example {
+  display: block;
+  margin: 2em;
+  border-style: none;
+  padding: 0 1em;
+  text-indent: 0;
+}
+p|example:before {
+  content: "Example.";
+  content: "Example " counter(example) ".";
+  counter-increment: example;
+  display: block;
+  text-indent: -1em;
+  font-weight: bolder;
+  font-style: italic;
+  font-family: "Times New Roman", serif;
+}
+
+p|interactive, p|input, p|output {
+  display: block;
+  margin: 1em 2em;
+  font-family: "Courier New", monospace;
+  white-space: pre;
+  line-height: 1.2;
+}
+
+p|input + p|output, p|output + p|input,
+p|example > p|input + p|output, p|example > p|output + p|input {
+  margin-top: 1em;
+}
+
+p|example > p|interactive, p|example > p|input, p|example > p|output {
+  margin: 0;
+}
+
+p|output:before {
+  display: block;
+  content: "[Result]";
+  font-family: "Arial", sans-serif;
+}
+
+p|inscomment {
+  margin-left: 3em;
+}
+p|inscomment:before {
+  content: "< ";
+  color: gray;
+}
+
+aside {
+  display: block;
+  margin: 2em 2% 4em 7%;
+  border: 0.2em gray solid;
+  padding: 0.5em;
+}
+
+p|quiz {
+  display: block;
+  margin: 1em 2em;
+}
+
+p|quiz:before {
+  content: "B%/%$%:(B: ";
+  font-family: sans-serif;
+  font-weight: bolder;
+}
+
+p|caption {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: sans-serif;
+  font-weight: bolder;
+}
+
+p|fig p|caption:before {
+  content: "B?^(B " counter(fig) " : ";
+}
+
+/* --- Semi-paragraph-level Elements --- */
+
+x2|l {
+  display: block;
+}
+
+p|math[display="block"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 85%;
+  text-align: center;
+}
+
+/* --- Inline-level Elements --- */
+
+em, dfn {
+  font-style: normal;
+  color: red;
+  font-weight: bolder;
+}
+
+ruby {
+  display: inline-table;
+}
+
+rb {
+  display: table-row-group;
+  line-height: 1.0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+rt {
+  display: table-header-group;
+  font-size: 60%;
+  line-height: 1.0;
+  text-align: center;
+}
+
+*|name-part > ruby > rb {
+  letter-spacing: 0.3em;
+}
+
+p|math, p|dim, p|unit {
+  display: inline;
+}
+
+var {
+  font-style: italic;
+}
+
+sub {
+  display: inline;
+  padding-left: 0.2em;
+  vertical-align: sub;
+  font-style: normal;
+  font-size: 90%;
+}
+
+*|h p|weak {
+  font-size: 50%;
+}
+
+p|weak {
+  font-size: 80%;
+}
+
+:lang(ja), *|*[script|script="kana"],
+p|math p|text:lang(ja), p|math p|text :lang(ja) {
+  font-family: "B#M#S (B B%4%7%C%/ (B", sans-serif;
+  font-weight: normal;
+}
+
+:lang(en), *|src, *|section-ref, *|seqNo,
+*|*[script|script="latn"], :lang(ja) *|*[script|script="latn"]
+*|math *|text:lang(en), *|math *|text :lang(en) {
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
+}
+
+*|math, *|dim, *|unit,
+*|math :lang(en),
+h1 + h2 :lang(en), h2 + h3 :lang(en) {
+  font-family: "Times New Roman", serif;
+  font-weight: normal;
+}
+
+@media projection {
+*|math, *|dim, *|unit,
+*|math :lang(en) {
+  font-family: "Arial", sans-serif;
+  font-weight: normal;
+}
+}
+
+a {
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+code {
+  font-family: "Courier New", monospace;
+}
+
+kbd {
+  font-family: "Courier New", monospace;
+  text-decoration: underline;
+}
+
+cite:lang(ja) {
+  font-style: normal;
+}
+cite:lang(ja):before {
+  content: "B!X (B";
+}
+cite:lang(ja):after {
+  content: "B!Y (B";
+}
+
+/* --- Mathmatical --- */
+
+p|expression {
+}
+
+p|operand {
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
+
+p|frac {
+  display: inline-table;
+  border-collapse: collapse;
+  vertical-align: -1.7em;
+}
+
+p|frac > *|* {
+  display: table-row;
+}
+
+p|frac > *|* + *|* {
+  border-top: 1px solid;
+}
+
+p|dim > p|unit {
+  padding-left: 0.2em;
+}
+
+p|text {
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
+
+span.dots {
+  font-family: serif;
+}

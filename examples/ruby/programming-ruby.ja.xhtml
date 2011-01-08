@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="euc-jp"?>
+<?xml-stylesheet href="hsml15.css" media="all"?>
+<!DOCTYPE html [
+  <!ENTITY Ruby "<span xml:lang='en'>Ruby</span>">
+  <!ATTLIST s:slide xml:id ID #IMPLIED>
+]>
+<html xml:lang="ja" lang="ja"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:s="urn:x-suika-fam-cx:markup:slide:1"
+    xmlns:x2="http://www.w3.org/2002/06/xhtml2/"
+    xmlns:p="http://suika.fam.cx/~wakaba/2005/10/iop-slide#"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:script="http://suika.fam.cx/~wakaba/archive/2004/script#"
+    xmlns:g="http://www.w3.org/2000/svg">
+<head>
+  <title xml:lang="en">ためになる話 / &Ruby;</title>
+  <style type="text/css" media="all">
+    @namespace s "urn:x-suika-fam-cx:markup:slide:1";
+    
+    s|slide[role="cover"] {
+      padding-top: 4em;
+    }
+    
+    s|seqNo[name="elapse"]:after {
+      content: "(" counter(elapse) ")";
+      counter-increment: elapse;
+    }
+    
+    s|seqNo[name="in"]:after {
+      content: "(" counter(in) ")";
+      counter-increment: in;
+    }
+    
+    s|seqNo[name="2pio"]:after {
+      content: "(" counter(tpio) ")";
+      counter-increment: tpio;
+    }
+    
+    s|seqNo[name="cb"]:after {
+      content: "(" counter(cb) ")";
+      counter-increment: cb;
+    }
+  </style>
+</head>
+<body>
+
+<s:slide role="cover">
+<header>
+<h1 xml:lang="en">ためになる話</h1>
+</header>
+</s:slide>
+
+<s:slide>
+<header>
+<h2>内容</h2>
+</header>
+
+<ul>
+<li>&Ruby; の特徴的で便利そうな機能を簡単に紹介
+</li>
+</ul>
+</s:slide>
+
+<s:slide>
+<header>
+<h3>紹介する本</h3>
+</header>
+
+<ul>
+<li><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4894714531"
+><cite>プログラミング &Ruby; ―― 達人プログラマーガイド</cite></a>,
+デビット・トーマス, アンドリュー・ハント著, 田和勝訳, まつもとゆきひろ監修,
+<abbr xml:lang="en">ISBN</abbr>: 
+<a href="urn:isbn:4-89471-453-1">4-89471-453-1</a></li>
+</ul>
+
+<p>他のプログラミング言語をある程度使える人が &Ruby;
+を習得するのにちょうどいい一冊。</p>
+</s:slide>
+
+<s:slide>
+<header><h2>こんな感じで役に立つ <p:weak>(かも)</p:weak></h2></header>
+
+<ul>
+<li>日常的な作業を自動化する</li>
+<li>シミュレーション結果を処理する</li>
+<li>頭の体操</li>
+</ul>
+
+<p:figure>
+<img src="ein-ana.png"/>
+</p:figure>
+</s:slide>
+
+<s:slide>
+<header><h2>&Ruby; はどんな言語?</h2></header>
+
+<ul>
+<li xml:lang="en">Lightweight language</li>
+<li>オブジェクト指向言語</li>
+<li>日本でわりと人気</li>
+<li>最近は欧米でも人気<ul>
+   <li xml:lang="en">Ruby on Rails</li></ul></li>
+</ul>
+
+<p:fig>
+<img src="viz.png"/>
+
+<p:caption><a href="http://www.google.com/trends?q=Ruby%2C+Perl%2C+Tcl%2C+PHP%2C+Python&amp;ctab=0&amp;geo=JP&amp;date=all">日本における Lightweight Language の注目度</a></p:caption>
+<p xml:lang="en">
+  <span style="color: #4684ee">● Ruby</span>
+  <span style="color: #dc3912">● Perl</span>
+  <span style="color: #008000">● PHP</span>
+  <span style="color: #4942cc">● Python</span>
+  <span style="color: #ff9900">● Tcl</span>
+</p>
+</p:fig>
+</s:slide>
+
+<s:slide>
+<header><h2>今回紹介する内容</h2></header>
+
+<ul>
+<li><a href="#massign">多重代入</a></li>
+<li><a href="#oo">オブジェクト指向</a></li>
+<li><a href="#iterator">イテレータ</a></li>
+<li><a href="#range">範囲</a></li>
+<li xml:lang="en"><a href="#rd">RD</a></li>
+</ul>
+</s:slide>
+
+<s:slide xml:id="irb">
+<header><h2 xml:lang="en">irb</h2></header>
+
+<ul>
+<li><code xml:lang="en">irb</code>: 対話型 <span xml:lang="en">ruby</span><ul>
+   <li><span xml:lang="en">Debian</span>
+   なら <kbd xml:lang="en">apt-get install irb</kbd> で</li></ul></li>
+</ul>
+
+<p:example xml:lang="en">
+<p:interactive>$ <kbd>irb</kbd>
+irb(main):001:0> <kbd>puts "Hello, world!"</kbd>
+Hello, world!
+nil
+irb(main):002:0>
+</p:interactive></p:example>
+</s:slide>
+
+<s:slide xml:id="passign">
+<header><h2>多重代入</h2></header>
+
+<p:example>
+<p:input>a, b, c = 1, 2, 3
+b, c = c, b
+puts "a=#{a}, b=#{b}, c=#{c}"</p:input>
+
+<p:output>a=1, b=3, c=2</p:output>
+</p:example>
+</s:slide>
+
+<s:slide xml:id="oo">
+<header><h2>オブジェクト指向</h2></header>
+
+<ul><li>すべてがオブジェクト</li></ul>
+
+<p:example xml:lang="en">
+<p:interactive>irb(main):002:0> <kbd>-1942.abs</kbd>
+1942
+</p:interactive></p:example>
+
+<p:example xml:lang="en"><p:interactive>irb(main):003:0> <kbd>a = []</kbd
+> <p:inscomment xml:lang="ja">変数宣言不要</p:inscomment>
+[]
+irb(main):004:0> <kbd>a.push (32)</kbd>
+[32]
+irb(main):005:0> <kbd>a.push 45</kbd> <p:inscomment
+xml:lang="ja">括弧は省略可能</p:inscomment>
+[32, 45]
+irb(main):006:0></p:interactive>
+
+<aside>
+<p xml:lang="ja">ちなみに <span xml:lang="en">Perl</span> では...</p>
+
+<p:input>push @a, 32;<p:inscomment
+xml:lang="ja">いけてない</p:inscomment>
+push @a, 45;</p:input>
+</aside></p:example>
+
+<p:example xml:lang="en"><p:interactive>irb(main):098:0> <kbd
+>[3, 1, 7, 0].sort.reverse</kbd>
+[7, 3, 1, 0]</p:interactive>
+
+<aside>
+<p xml:lang="ja">ちなみに <span xml:lang="en">Perl</span> では...</p>
+
+<p:input>reverse sort 3, 1, 7, 0</p:input>
+</aside></p:example>
+</s:slide>
+
+<s:slide xml:id="iterator">
+<header><h2>イテレータ</h2></header>
+
+<ul>
+<li>繰り返し処理を華麗に記述
+
+<p:inscomment>繰り返しは使用頻度が高いので、
+うまく書けると気持ちがいい</p:inscomment>
+</li>
+<li>他の言語と同じ構文もあるが...
+
+<p:example xml:lang="en">
+<p:input>for i in ['fee', 'fi', 'fo', 'fum']
+  puts i
+end</p:input>
+
+<p:output>fee
+fi
+fo
+fum</p:output>
+</p:example></li>
+</ul>
+
+<p>もっと直感的に...</p>
+
+<p:example xml:lang="en">
+<p:input>3.times do
+  print 'Ho! '
+end</p:input>
+
+<p:output>Ho! Ho! Ho! </p:output></p:example>
+
+<p:example xml:lang="en"><p:input>0.upto 9 do |x|
+  print x, ' '
+end</p:input>
+
+<p:output>0 1 2 3 4 5 6 7 8 9 </p:output></p:example>
+
+<p:example xml:lang="en">
+<p:input>(0..10).each { |i| print i ** 2, ' ' }</p:input>
+
+<p:output>0 1 4 9 16 25 36 49 64 81 100 </p:output>
+
+<p:quiz><span xml:lang="en">Perl</span> で同じことをするには?</p:quiz>
+
+
+<aside>
+<p xml:lang="ja">ちなみに <span xml:lang="en">JavaScript 1.5</span> では...</p>
+
+<p:input>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+.forEach (function (i) {
+  alert (Math.pow (i, 2));
+})</p:input>
+</aside></p:example>
+
+<p:example xml:lang="en">
+<p:input>puts ((1..10).collect { |n| n * 5 }.join ', ')</p:input>
+
+<p:output>5, 10, 15, 20, 25, 30, 35, 40, 45, 50</p:output>
+
+<p:quiz><span xml:lang="en">Perl</span> で同じことをするには?</p:quiz>
+</p:example>
+
+<p:example xml:lang="en">
+<p:input>File.open ('data').grep /d$/ do |line|
+  print line
+end</p:input>
+
+<p:quiz>行の順番を入れ替えて出力する (最後の行が最初に来るようにする) には?</p:quiz>
+
+<aside>
+<p xml:lang="ja">ちなみに <span xml:lang="en">Perl</span> では...</p>
+
+<p:input>open my $file, '&lt;', 'data';
+print for grep /d$/, &lt;$file>;
+close $file;</p:input>
+
+<p:quiz>行の順番を入れ替えて出力する (最後の行が最初に来るようにする) には?</p:quiz>
+</aside>
+</p:example>
+</s:slide>
+
+<s:slide>
+<header><h2>イテレータを定義する</h2></header>
+
+<ul>
+<li>メソッドは、引数の他にブロックを指定できる<ul>
+   <li><code xml:lang="en">do <var>...</var> end</code></li>
+   <li><code xml:lang="en">{ <var>...</var> }</code></li></ul></li>
+<li>イテレータは、ブロックを呼び出す単なるメソッド</li>
+</ul>
+
+<p:example xml:lang="en">
+<p:input>def fib_up_to (max)
+  i1, i2 = 1, 1
+  while i1 &lt;= max
+    yield i1
+    i1, i2 = i2, i1 + i2
+  end
+end
+
+fib_up_to (1000) do |f|
+  print f, ' '
+end</p:input>
+
+<p:output>1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 </p:output>
+
+<p:quiz>これで何が嬉しい?</p:quiz>
+
+<p:quiz><span xml:lang="en">Perl</span> で同じことをするには?</p:quiz>
+
+<aside xml:lang="ja">
+<p>ちなみに <span xml:lang="en">JavaScript 1.7</span> では...</p>
+
+<p:example xml:lang="en"><p:input>function fib () {
+  var i1 = 1, i2 = 1;
+  while (true) {
+    yield i1;
+    var t = i1;
+    i1 = i2;
+    i2 += t;
+  }
+}
+
+var g = fib ();
+while (true) {
+  var v = g.next ();
+  if (v > 1000) break;
+  print (v);
+}
+</p:input>
+
+<p><p:weak>&Ruby; のイテレータは、 <span xml:lang="en">Python</span>
+や <span xml:lang="en">JavaScript</span> のジェネレータ / イテレータとは異なり、
+コールバック関数に近い。</p:weak></p>
+</p:example>
+</aside>
+</p:example>
+
+<p:example xml:lang="en">
+<p:input>class Array
+  def inject (n)  <p:inscomment xml:lang="en"><span
+        xml:lang="en">Ruby 1.7</span> 以降は標準の機能</p:inscomment>
+    each { |value| n = yield (n, value) }
+    n
+  end
+  def sum
+    self.inject (0) do |n, value|
+      n = n + value
+    end
+  end
+  def product
+    self.inject (1) do |n, value|
+      n = n * value
+    end
+  end
+end
+
+puts [1, 2, 3, 4, 5].sum
+puts [1, 2, 3, 4, 5].product</p:input>
+
+<p:output>15
+120</p:output>
+
+<p:quiz>どうしてこうなる?</p:quiz>
+</p:example>
+</s:slide>
+
+<s:slide xml:id="range">
+<header><h2>範囲</h2></header>
+
+<ul>
+<li>開始点と終了点により定義されるオブジェクト</li>
+<li>数値に限らず、どんなオブジェクトでも (特定のメソッドを定義すれば) 使える</li>
+</ul>
+
+<p:example xml:lang="en">
+<p:interactive>irb(main):090:0> <kbd>digits = 0..9</kbd>
+0..9
+irb(main):091:0> <kbd>digits.include? 5</kbd>
+true
+irb(main):092:0> <kbd>digits.min</kbd>
+0
+irb(main):093:0> <kbd>digits.max</kbd>
+9
+irb(main):094:0> <kbd>digits.reject { |i| i &lt; 5 }</kbd>
+[5, 6, 7, 8, 9]
+irb(main):095:0> <kbd>digits === 7</kbd>
+true</p:interactive></p:example>
+
+<p:quiz><span xml:lang="en">Perl</span> の <code>..</code>
+との違いは?</p:quiz>
+</s:slide>
+
+<s:slide xml:id="rd">
+<header><h2 xml:lang="en">RD</h2></header>
+
+<ul>
+<li>ソースコード内にドキュメントを書く<ul>
+   <li>別に管理するのは面倒くさい</li></ul></li>
+<li><span xml:lang="en">rdtools</span> を使って 
+<abbr xml:lang="en">HTML</abbr> 等に変換できる</li>
+<li>ちなみに他の言語では...<ul>
+   <li xml:lang="en">Perl: POD</li>
+   <li xml:lang="en">Java: Javadoc</li></ul></li>
+</ul>
+
+<p:example xml:lang="en">
+<p:input><![CDATA[=begin
+= Synopsis
+
+...
+See ((<Return code>)) for details.
+...
+== Instance Methods
+
+--- Tempfile.open ( filename )
+    Opens the file...
+
+== Return Codes
+..
+The method ((<template.open>)) raises an (({IOException}))...
+=end]]></p:input></p:example>
+</s:slide>
+
+<s:slide>
+<header><h2>その他の便利な機能</h2></header>
+
+<ul>
+<li>正規表現</li>
+<li>例外</li>
+<li xml:lang="en">Mixin</li>
+<li>変異メソッド</li>
+<li><span xml:lang="en">C</span> 言語用 <abbr xml:lang="en">API</abbr></li>
+</ul>
+</s:slide>
+</body>
+</html>
