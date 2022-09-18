@@ -12,7 +12,7 @@ h|head {
 
 h|title {
   display: inline;
-  -moz-binding: url(http://suika.fam.cx/www/style/ui/title.xbl#title);
+  -moz-binding: url(https://suika.suikawiki.org/www/style/ui/title.xbl#title);
 }
 
 /* Headings */

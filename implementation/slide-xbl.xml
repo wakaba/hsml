@@ -2,7 +2,7 @@
 <bindings xmlns="http://www.mozilla.org/xbl">
   <binding id="slideCore">
     <implementation>
-      <field name="SLIDE_XBL_BASE">'http://suika.fam.cx/~wakaba/-temp/slide/implementation/'</field>
+      <field name="SLIDE_XBL_BASE">'https://suika.suikawiki.org/~wakaba/-temp/slide/implementation/'</field>
       <field name="NS_SLIDE">'urn:x-suika-fam-cx:markup:slide:1'</field>
       <field name="NS_XHTML1">'http://www.w3.org/1999/xhtml'</field>
       <field name="NS_XHTML2">'http://www.w3.org/2002/06/xhtml2'</field>
@@ -279,7 +279,7 @@
    - the Initial Developer. All Rights Reserved.
    -
    - Contributor(s):
-   -   Wakaba <w@suika.fam.cx>
+   -   Wakaba <wakaba@suikawiki.org>
    -
    - Alternatively, the contents of this file may be used under the terms of
    - either the GNU General Public License Version 2 or later (the "GPL"), or
